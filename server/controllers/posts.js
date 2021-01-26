@@ -2,9 +2,9 @@ import Mongoose from "mongoose";
 import PostMessage from "../models/post-message.js";
 
 
-export const getPosts =async (req, res) => {
+export const getPosts = (req, res) => {
 
-    PostMessage.find()
+    PostMessage.find().lean()
         .then((result) => res.status(200).json(result))
         .catch(error => res.status(404).json({ message: error.message }));
 
@@ -12,7 +12,7 @@ export const getPosts =async (req, res) => {
 
 export const createPost = (req, res) => {
     const post = req.body;
-    const newPost = new PostMessage(post);
+    const newPost = new PostMessage({ ...post, creator: req.userId, createAt: new Date().toISOString() });
 
     newPost.save()
         .then(() => res.status(201).json(newPost))
@@ -26,32 +26,44 @@ export const updatePost = (req, res) => {
     if (!Mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(404).send(`No post with that id: ${_id}`);
     }
-    PostMessage.findByIdAndUpdate(_id, {...post, _id}, { new: true })
-    .then((updatedPost) =>{
-        res.status(201).json(updatedPost);
-    })
+    PostMessage.findByIdAndUpdate(_id, { ...post, _id }, { new: true }).lean()
+        .then((updatedPost) => {
+            res.status(201).json(updatedPost);
+        })
 }
 
-export const deletePost = (req,res)=>{
-    const {id} = req.params;
+export const deletePost = (req, res) => {
+    const { id } = req.params;
     if (!Mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).send(`No post with that id: ${_id}`);
     }
-    PostMessage.findByIdAndRemove(id)
-    .then(()=>res.json({message: 'Post deleted successfully'}));
+    PostMessage.findByIdAndRemove(id).lean()
+        .then(() => res.json({ message: 'Post deleted successfully' }));
 
 }
 
-export const likePost = (req,res)=>{
-    const {id} = req.params;
+export const likePost = (req, res) => {
+    const { id } = req.params;
+
+    if (!req.userId) return res.json({ message: "Unauthenticated" });
     if (!Mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).send(`No post with that id: ${id}`);
     }
-    PostMessage.findById(id)
-    .then((post)=>{
-        PostMessage.findByIdAndUpdate(id, {likeCount : post.likeCount+1}, { new: true })
-        .then(updatePost=> res.json(updatePost));
+    PostMessage.findById(id).select("likes").lean()
+        .then((result) => {
+            const index = result.likes.findIndex((id) => id === String(req.userId));
+            if (index === -1) {
+                //index not found
+                result.likes.push(req.userId);
+            } else {
+                result.likes = result.likes.filter((id) => id !== String(req.userId));
 
-    });
+            }
+            PostMessage.updateOne({_id:id},{ likes: result.likes }).lean()
+                .then(updatePost => {
+                    res.json({ _id: id, likes: result.likes});
+                })
+
+        });
 
 }
