@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Grid, CircularProgress } from "@material-ui/core"
-import { useSelector } from "react-redux"
-
+import {useSelector} from "react-redux";
 import Post from "./post";
 import useStyles from "./styles/posts";
 const Posts = ({setCurrentId}) => {

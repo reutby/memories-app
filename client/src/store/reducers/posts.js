@@ -8,12 +8,16 @@ const reducer = (posts = [], action) => {
             return [...posts, action.payload];
         case actionTypes.UPDATE_POST:
         case actionTypes.LIKE_POST:
-            return (posts.map((post) => post._id === action.payload._id ?
-                action.payload : post)
-            )
+            return (posts.map((post) => {
+                if (post._id === action.payload._id) {
+                    post.likes = action.payload.likes;
+                }
+                return post;
+                
+            }))
         case actionTypes.DELETE_POST:
             return posts.filter((post) => post._id !== action.payload);
-        
+
         default:
             return posts;
     }
