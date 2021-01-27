@@ -10,24 +10,32 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    position:'relative',
   },
   heading: {
     color: '#FF5471',
     textDecoration: 'none',
-  },
+    fontSize:'4rem'
+  }
+  
+  ,
   image: {
     marginLeft: '15px',
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'flex-end',
     width: '400px',
+    justifyContent:'center',
+    alignItems:'center',
+    position:'relative',
+    left:'rem'
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
+    width: '300px',
   },
+  
   userName: {
     display: 'flex',
     alignItems: 'center',
@@ -39,6 +47,22 @@ export default makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
+  },
+  [theme.breakpoints.down('sm')] : {
+    appBar:{  
+      flexDirection:'column !important'
+    },
+    heading:{
+      fontSize:'2rem'
+    },
+    toolbar:{
+      // justifyContent:'right',
+    },
+    profile:{
+      // alignItems:'center',
+      right:'10rem',
+      width:'250px'
+    }
   },
 }));
 

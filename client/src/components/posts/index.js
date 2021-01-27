@@ -19,7 +19,7 @@ const Posts = ({setCurrentId}) => {
                             key={post._id}
                             item
                             xs={12}
-                            sm={6} >
+                            sm={12} >
                             <Post post ={post} setCurrentId={setCurrentId}/>
                         </Grid>
                     ))}

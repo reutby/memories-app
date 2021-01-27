@@ -7,7 +7,7 @@ import axios from "axios";
 //production
 
 //{baseURL:'https://memories-app-prj.herokuapp.com'}
-const API = axios.create({baseURL:'https://memories-app-prj.herokuapp.com'});
+const API = axios.create({baseURL:'http://localhost:5000'});
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
         req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`

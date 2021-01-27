@@ -5,28 +5,28 @@ import moment from "moment"
 
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../store/actions/posts";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt"
-import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined"
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyle from "./styles/post"
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyle();
     const user = JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
 
-       const Likes = () => {
+    const Likes = () => {
         if (post.likes.length > 0) {
             return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
                 ? (
-                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
+                    <><FavoriteIcon fontSize="medium" color="secondary" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
                 ) : (
-                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+                    <><FavoriteBorderIcon fontSize="medium" className={classes.actionIcons} />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
                 );
         }
 
-        return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+        return <><FavoriteBorderIcon fontSize="medium" />&nbsp;Like</>;
     };
 
     return (
@@ -49,7 +49,7 @@ const Post = ({ post, setCurrentId }) => {
             }
             <div className={classes.details}>
                 <Typography variant="body2"
-                    color="textSecondary">
+                >
                     {post.tags.map((tag) => `#${tag} `)}
                 </Typography>
             </div>
@@ -61,18 +61,23 @@ const Post = ({ post, setCurrentId }) => {
             <CardContent>
                 <Typography
                     variant="body2"
-                    color="textSecondary"
                     component="p"
                 >{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary"
+                
+                <Button size="small" className={classes.actionIcons}
                     disabled={!user?.result} onClick={() => { dispatch(likePost(post._id)) }}>
                     <Likes />
                 </Button>
+                <Button size="small" className={classes.actionIcons}
+                    disabled={!user?.result} onClick={() => { }}>
+                    <CommentOutlinedIcon />
+                </Button>
+
                 {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-                    <Button size="small" color="primary" onClick={() => { dispatch(deletePost(post._id)) }}>
-                        <DeleteIcon fontSize="small" />
+                    <Button size="small" className={classes.actionIcons} onClick={() => { dispatch(deletePost(post._id)) }}>
+                        <DeleteIcon fontSize="medium" />
                     Delete
                     </Button>
 
