@@ -1,35 +1,28 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@material-ui/core"
-import moment from "moment"
-
-import { useDispatch } from "react-redux";
-import { deletePost, likePost } from "../../../store/actions/posts";
-import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
-import DeleteIcon from "@material-ui/icons/Delete";
+import React, { useState } from "react";
+import { Card, CardActions, CardContent, CardMedia, Button, TextField, Typography } from "@material-ui/core"
+import moment from "moment";
+import ButtonsActions from "../../buttons-actions";
+import { Comments } from "../../";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import CommentInput from "./comment-input";
+import { useSelector } from "react-redux"
 import useStyle from "./styles/post"
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyle();
     const user = JSON.parse(localStorage.getItem('profile'));
-    const dispatch = useDispatch();
-
-    const Likes = () => {
-        if (post.likes.length > 0) {
-            return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
-                ? (
-                    <><FavoriteIcon fontSize="medium" color="secondary" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
-                ) : (
-                    <><FavoriteBorderIcon fontSize="medium" className={classes.actionIcons} />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
-                );
-        }
-
-        return <><FavoriteBorderIcon fontSize="medium" />&nbsp;Like</>;
-    };
+    const [toggleComments, setToggleComments] = useState(false);
+    const { comments, countComments } = useSelector((state) => {
+        const comments = state.comments.filter((comment) => comment.postId === String(post._id));
+        return ({ comments: comments, countComments: comments.length })
+    }
+    );
+    const handleCommentsClick = () => {
+        setToggleComments((prev) => !prev);
+    }
 
     return (
+
         <Card className={classes.card}>
             <CardMedia className={classes.media}
                 image={post.selectedFile}
@@ -65,24 +58,15 @@ const Post = ({ post, setCurrentId }) => {
                 >{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                
-                <Button size="small" className={classes.actionIcons}
-                    disabled={!user?.result} onClick={() => { dispatch(likePost(post._id)) }}>
-                    <Likes />
-                </Button>
-                <Button size="small" className={classes.actionIcons}
-                    disabled={!user?.result} onClick={() => { }}>
-                    <CommentOutlinedIcon />
-                </Button>
+                <ButtonsActions cardComponent={post} commentsCount={countComments} handleClick={handleCommentsClick} iconSize="default" isPost />
 
-                {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-                    <Button size="small" className={classes.actionIcons} onClick={() => { dispatch(deletePost(post._id)) }}>
-                        <DeleteIcon fontSize="medium" />
-                    Delete
-                    </Button>
+            </CardActions>
 
-                )}
-
+            <CardActions>
+                <Comments isShow={toggleComments} comments={comments} />
+            </CardActions>
+            <CardActions className={classes.commentAction}>
+                <CommentInput postId={post._id} />
             </CardActions>
         </Card>
     );

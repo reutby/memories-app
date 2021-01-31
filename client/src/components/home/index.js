@@ -3,7 +3,7 @@ import {Container, Grid, Grow} from '@material-ui/core'
 import { useDispatch } from "react-redux";
 
 import useStyle from "./styles/home";
-
+import { getAllComments } from "../../store/actions/comments";
 import { getPosts } from "../../store/actions/posts";
 import {Posts, Form} from "../"
 
@@ -18,6 +18,10 @@ const Home = ()=>{
         dispatch(getPosts());
     }, [dispatch, currentId])
 
+
+    useEffect(() => {
+        dispatch(getAllComments());
+    }, [dispatch,currentId])
     return (
         <Grow in>
         <Container>

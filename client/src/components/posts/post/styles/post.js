@@ -20,6 +20,7 @@ export default makeStyles({
     border:'2px rgb(255,255,255)',
     boxShadow:'0 2rem 3rem #252525',
     display: 'flex',
+    paddingBottom:'.5rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor:'#252525',
@@ -59,4 +60,8 @@ export default makeStyles({
     display: 'flex',
   // justifyContent: 'space-between',
   },
+ 
+  commentAction:{
+  },
+
 });
