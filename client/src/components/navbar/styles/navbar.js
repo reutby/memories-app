@@ -50,12 +50,14 @@ export default makeStyles((theme) => ({
   },
   [theme.breakpoints.down('sm')] : {
     appBar:{  
-      flexDirection:'column !important'
+      flexDirection:'column !important',
+      padding: '10px 10px',
     },
     heading:{
       fontSize:'2rem'
     },
     toolbar:{
+      width: 'auto',
       // justifyContent:'right',
     },
     profile:{

@@ -6,6 +6,7 @@ export default makeStyles((theme)=>({
         border:'1px solid #fff',
         backgroundColor:'#000',
         borderRadius:'10px',
+        position:'relative',
     },
     profile:{
         display:'flex',

@@ -16,8 +16,7 @@ export const createPostComment = (req, res) => {
 
     newComment.save()
         .then(() => {
-            res.status(201).json(newComment)
-            console.log("newComment",newComment);
+            res.status(201).json(newComment);
         })
         .catch(err => res.status(409).json({ message: err.message }));
 
