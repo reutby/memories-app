@@ -15,7 +15,7 @@ const Comment = ({ comment }) => {
                 <Avatar className={classes.purple}
                     alt={comment.name}
                     src={comment.avatarSrc}>
-                    {comment.name.charAt(0)}
+                    {comment.name.charAt(0).toUpperCase()}
                 </Avatar>
                 <Typography className={classes.userName}
                     variant="h6"

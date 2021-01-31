@@ -15,7 +15,6 @@ export const getAllComments = () => async (dispatch) => {
 
 export const createComment = (postId,comment) => async (dispatch) => {
     try {
-        console.log(comment);
         const { data } = await api.createPostComment(comment,postId);
         dispatch({ type: actionTypes.CREATE_POST_COMMENT, payload: data });
     } catch (err) {

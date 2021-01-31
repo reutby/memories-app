@@ -17,7 +17,6 @@ const CommentInput = ({ postId }) => {
 
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
-        setToggleEmojiButton(false);
     };
 
     useEffect(() => {

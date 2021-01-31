@@ -29,7 +29,7 @@ const Post = ({ post, setCurrentId }) => {
                 title={post.title}
             />
             <div className={classes.overlay}>
-                <Typography variant="h6">{post.name}</Typography>
+                <Typography variant="h6" className={classes.creatorName}>{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createAt).fromNow()}</Typography>
             </div>
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (<div className={classes.overlay2}>

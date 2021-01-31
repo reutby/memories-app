@@ -45,7 +45,7 @@ const Navbar = () => {
                         <Avatar className = {classes.purple}
                         alt = {user.result.name}
                         src={user.result.imageUrl}>
-                            {user.result.name.charAt(0)}
+                            {user.result.name.charAt(0).toUpperCase()}
                          </Avatar>
                          <Typography className={classes.userName} 
                          variant="h6"

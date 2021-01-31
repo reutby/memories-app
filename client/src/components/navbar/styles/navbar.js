@@ -63,7 +63,7 @@ export default makeStyles((theme) => ({
     profile:{
       // alignItems:'center',
       right:'10rem',
-      width:'250px'
+      width:'300px'
     }
   },
 }));

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 //for exemple if user want to like post 
 //click the like button => auth moddleware(NEXT) =>like controller
 dotenv.config();
-const auth = async(req,res,next)=>{
+const auth = async(req,res,history,next)=>{
     try {
         const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500;
@@ -23,7 +23,8 @@ const auth = async(req,res,next)=>{
         }
         next();
     } catch (error) {
-        console.log(error);
+        console.log(error.name);
+        alert("Your Authorization have been expired. Please login Again");
     }
 }
 

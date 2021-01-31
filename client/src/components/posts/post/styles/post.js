@@ -54,7 +54,9 @@ export default makeStyles({
     padding: '0 16px',
     color: 'white',
   },
-
+  creatorName:{
+    textTransform:"capitalize",
+  },
   cardActions: {
     padding: '0 8px 8px 8px',
     display: 'flex',
