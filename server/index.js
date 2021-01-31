@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
+import commentsRoutes from "./routes/comments.js";
 
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(cors());
 
 app.use('/posts',postRoutes);
 app.use('/user', userRoutes);
+app.use('/comments', commentsRoutes);
 app.get('/', (req,res)=>{
     res.send('Hello to memories API');
 });
