@@ -36,7 +36,7 @@ export default makeStyles((theme)=>({
         color:'#fff',   
         display:'flex',
         margin:'.5rem',
-        'width':'5rem',
+        width:'10rem',
         fontSize:'1.1rem',
         fontWeight:'bold',
         textAlign:'left',
@@ -47,12 +47,26 @@ export default makeStyles((theme)=>({
     comment:{
         // display:'flex',
         position:'relative',
-        width:'12rem',
+        width:'40rem',
         paddingLeft:'1rem',
         margin:'0 1rem 1rem 3rem',
         overflowWrap: 'break-word',
         color:'#fff',
         // paddingLeft:'.5rem',
+    },
+    [theme.breakpoints.down('md')] : {
+        comment:{
+            width:'25rem',
+        },
+       
+    },
+    [theme.breakpoints.down('sm')] : {
+        comment:{
+            width:'12rem',
+        },
+        userName:{
+            width:'5rem',
+        }   
     }
 
 }));

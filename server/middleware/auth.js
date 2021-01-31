@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 //for exemple if user want to like post 
 //click the like button => auth moddleware(NEXT) =>like controller
 dotenv.config();
-const auth = async(req,res,history,next)=>{
+const auth = async(req,res,next)=>{
     try {
         const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500;
