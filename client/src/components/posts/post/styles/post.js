@@ -50,6 +50,10 @@ export default makeStyles({
     margin: '20px',
     color: 'white',
   },
+  tags:{
+    fontWeight:'bold',
+    fontSize: '1rem',
+  },
   title: {
     padding: '0 16px',
     color: 'white',
