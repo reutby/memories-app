@@ -24,9 +24,9 @@ const Home = ()=>{
     }, [dispatch,currentId])
     return (
         <Grow in>
-        <Container>
+        <Container className={classes.topContainer}>
             <Grid container className={classes.mainContainer} justify="space-between" alignItems="stretch" spacing={3}>
-                <Grid item xs={12} sm={8}>
+                <Grid item className={classes.postsItem} xs={12} sm={8}>
                     <Posts setCurrentId={setCurrentId} />
                 </Grid>
                 <Grid item xs={12} sm={4}>

@@ -19,7 +19,8 @@ const Posts = ({setCurrentId}) => {
                             key={post._id}
                             item
                             xs={12}
-                            sm={12} >
+                            sm={12} 
+                            className={classes.post}>
                             <Post post ={post} setCurrentId={setCurrentId}/>
                         </Grid>
                     ))}

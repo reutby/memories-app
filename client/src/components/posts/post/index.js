@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Card, CardActions, CardContent, CardMedia, Button, TextField, Typography } from "@material-ui/core"
+import {Avatar, Card, CardActions, CardContent, CardMedia, Button, TextField, Typography } from "@material-ui/core"
 import moment from "moment";
 import ButtonsActions from "../../buttons-actions";
 import { Comments } from "../../";
@@ -29,6 +29,11 @@ const Post = ({ post, setCurrentId }) => {
                 title={post.title}
             />
             <div className={classes.overlay}>
+                <Avatar className={classes.avatar}
+                    alt={user.result.name}
+                    src={user.result.imageUrl}>
+                    {user.result.name.charAt(0).toUpperCase()}
+                </Avatar>
                 <Typography variant="h6" className={classes.creatorName}>{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createAt).fromNow()}</Typography>
             </div>

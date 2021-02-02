@@ -1,14 +1,24 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { deepPurple } from '@material-ui/core/colors';
 
-export default makeStyles({
+export default makeStyles((theme) => ({
+
   media: {
     height: 0,
-    paddingTop: '56.25%',
+    paddingTop: '70%',
     backgroundBlendMode: 'darken',
-    borderBottom:'2px solid #fff'
+    borderBottom: '2px solid #fff'
   },
-  actionIcons:{
-    color:'white'
+  avatar: {
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500],
+    float: 'left',
+    marginRight: '1rem',
+    top: '.3rem',
+
+  },
+  actionIcons: {
+    color: 'white'
   },
   border: {
     border: 'solid',
@@ -17,23 +27,25 @@ export default makeStyles({
     height: '100%',
   },
   card: {
-    border:'2px rgb(255,255,255)',
-    boxShadow:'0 2rem 3rem #252525',
+    border: '2px rgb(255,255,255)',
+    boxShadow: '0 2rem 3rem #252525',
     display: 'flex',
-    paddingBottom:'.5rem',
+    paddingBottom: '.5rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor:'#252525',
-    borderRadius: '15px',
+    backgroundColor: '#252525',
     height: '100%',
     position: 'relative',
     color: 'white',
   },
   overlay: {
     position: 'absolute',
-    top: '20px',
-    left: '20px',
+    top: '0',
+    padding: '.7rem',
+    left: '0',
     color: 'white',
+    backgroundColor: 'rgba(0,0,0,.6)',
+    width: '100%',
   },
   overlay2: {
     position: 'absolute',
@@ -50,24 +62,22 @@ export default makeStyles({
     margin: '20px',
     color: 'white',
   },
-  tags:{
-    fontWeight:'bold',
+  tags: {
+    fontWeight: 'bold',
     fontSize: '1rem',
   },
   title: {
     padding: '0 16px',
     color: 'white',
   },
-  creatorName:{
-    textTransform:"capitalize",
+  creatorName: {
+    textTransform: "capitalize",
   },
   cardActions: {
     padding: '0 8px 8px 8px',
     display: 'flex',
-  // justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
- 
-  commentAction:{
-  },
+}
 
-});
+));
