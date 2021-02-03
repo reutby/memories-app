@@ -23,17 +23,23 @@ export default makeStyles((theme) => ({
     marginLeft: '15px',
   },
   toolbar: {
-    display: 'flex',
-    width: '400px',
-    justifyContent:'center',
-    alignItems:'center',
     position:'relative',
-    left:'rem'
+    float:'right',
+    width: '300px',
+    
+  },
+  logout:{
+    padding:'.5rem !important',
+    margin:'1rem  !important',
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '300px',
+    '& > *':{
+      margin:'0 1rem',
+      padding:'.2rem',
+    }
   },
   
   userName: {
@@ -47,6 +53,33 @@ export default makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
+    position:'relative',
+    top:'.5rem',
+    marginRight:'.5rem',
+  },
+  notificationButton:{
+    backgroundColor:'transparent',
+    
+    '&:hover':{
+      // backgroundColor:'#FF5471',
+    }
+  },
+  notificationIcon:{
+    color:'#000',
+  },
+  notificationsDiv:{
+    position:'relative',
+    margin:'0',
+  },
+  notificationCount:{
+    position:'absolute',
+    display:'inline-block',
+    borderRadius:'100%',
+    backgroundColor:'#f44336',
+    top:'.6rem',
+    right:'.8rem',
+    padding:'0 .3rem',
+    fontSize:'.8rem',
   },
   [theme.breakpoints.down('sm')] : {
     appBar:{  
@@ -57,13 +90,13 @@ export default makeStyles((theme) => ({
       fontSize:'2rem'
     },
     toolbar:{
-      width: 'auto',
-      // justifyContent:'right',
+      padding: '.5rem 0',
+      display:'flex',
+      alignItems:'center',
+      justifyContent:'center',
     },
     profile:{
-      // alignItems:'center',
-      right:'10rem',
-      width:'300px'
+     
     }
   },
 }));

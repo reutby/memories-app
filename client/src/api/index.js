@@ -32,3 +32,8 @@ export const likePostComment = (id) => API.patch(`/comments/${id}/likePost`);
 //USER
 export const signIn = (formData)=>API.post('/user/signin', formData);
 export const signUp = (formData)=>API.post('/user/signup', formData);
+
+//NOTIFICATIONS
+export const fetchNotifications = ()=>API.get('/notifications');
+export const createNotification = (newNotification)=>API.post('/notifications',newNotification); 
+

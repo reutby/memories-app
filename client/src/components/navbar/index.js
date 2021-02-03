@@ -5,9 +5,10 @@ import useStyles from "./styles/navbar";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {logout} from "../../store/actions/auth"; 
-import { AppBar, Typography, Toolbar, Avatar, Button } from "@material-ui/core";
+import { AppBar, Typography, Toolbar, Avatar, Button,IconButton } from "@material-ui/core";
 import memories from "../../assets/images/memories.png";
 import decode from 'jwt-decode';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 const Navbar = () => {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -36,12 +37,20 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography component={Link} to='/' className={classes.heading}  align="center"> Memories</Typography>
+                <Typography component={Link} to='/' className={classes.heading}  align="center"> Memo Zone</Typography>
                 <img src={memories} className={classes.image} alt="memories" height="60" />
             </div>
             <Toolbar className = {classes.toolbar}>
                 {user? (
                     <div className = {classes.profile}>
+                        <div className={classes.notificationsDiv}>
+                         
+                         <IconButton component={Link} to='/notifications' className={classes.notificationButton}>
+                             <NotificationsNoneIcon className={classes.notificationIcon} fontSize="large"/>
+                         </IconButton>
+                        
+                        <Typography className={classes.notificationCount}>0</Typography>
+                        </div>
                         <Avatar className = {classes.purple}
                         alt = {user.result.name}
                         src={user.result.imageUrl}>
@@ -52,6 +61,7 @@ const Navbar = () => {
                          >
                           {user.result.name}  
                          </Typography>
+
                          <Button variant="contained" className={classes.logout}
                          color="secondary"
                          onClick={handleLogout}>

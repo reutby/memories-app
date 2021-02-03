@@ -6,12 +6,13 @@ import ButtonsActions from "../../buttons-actions";
 import { Comments } from "../../";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import CommentInput from "./comment-input";
-import { useSelector } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import useStyle from "./styles/post"
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyle();
     const user = JSON.parse(localStorage.getItem('profile'));
     const [toggleComments, setToggleComments] = useState(false);
+    const dispatch = useDispatch();
     const { comments, countComments } = useSelector((state) => {
         const comments = state.comments.filter((comment) => comment.postId === String(post._id));
         return ({ comments: comments, countComments: comments.length })
@@ -30,9 +31,9 @@ const Post = ({ post, setCurrentId }) => {
             />
             <div className={classes.overlay}>
                 <Avatar className={classes.avatar}
-                    alt={user.result.name}
-                    src={user.result.imageUrl}>
-                    {user.result.name.charAt(0).toUpperCase()}
+                    alt={post.name}
+                    src={post.avatar}>
+                    {post.name.charAt(0).toUpperCase()}
                 </Avatar>
                 <Typography variant="h6" className={classes.creatorName}>{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createAt).fromNow()}</Typography>
@@ -46,7 +47,7 @@ const Post = ({ post, setCurrentId }) => {
             </div>)
             }
             <div className={classes.details}>
-                <Typography variant="body2" className={classes.tags}
+                <Typography variant="bosdy2" className={classes.tags}
                 >
                     {post.tags.map((tag) => `#${tag} `)}
                 </Typography>
@@ -71,7 +72,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Comments isShow={toggleComments} comments={comments} />
             </CardActions>
             <CardActions className={classes.commentAction}>
-                <CommentInput postId={post._id} />
+                <CommentInput postCreator= {{id:post.creator,name:post.name}} postId={post._id} />
             </CardActions>
         </Card>
     );

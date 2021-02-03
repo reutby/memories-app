@@ -33,7 +33,6 @@ const Form = ({ currentId, setCurrentId }) => {
             ...postData,
             tags: tags
         });
-        console.log(tags);
     }
 
     const handelClear = () => {
@@ -48,12 +47,15 @@ const Form = ({ currentId, setCurrentId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const tagsUpdate = postData.tags.map((tag)=> tag.displayValue);
+        const tagsUpdate = postData.tags.map((tag) => tag.displayValue);
         if (currentId) {
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, tags:tagsUpdate}));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, tags: tagsUpdate }));
         }
         else {
-            dispatch(createPost({ ...postData, name: user?.result?.name, tags:tagsUpdate}));
+            dispatch(createPost({
+                ...postData, name: user?.result?.name, tags: tagsUpdate, isGoogleLogin: (user.result?.imageUrl) ? true : false,
+                avatarSrc: user.result?.imageUrl || null
+            }));
 
         }
         handelClear();
@@ -148,7 +150,6 @@ const Form = ({ currentId, setCurrentId }) => {
             <TagInput
                 onTagsChanged={handleTagsChange}
                 tags={postData.tags}
-                addTagOnEnterKeyPress={false}
                 wrapperStyle={`
                         
                         border:solid 1px #cdd0cb;
@@ -170,7 +171,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     `background-color:transparent;
                         `
                 }
-                tagStyle = {`
+                tagStyle={`
                     background-color:#3700b3;
                     
                     box-shadow:0 .5rem 1rem #cdd0cb;
@@ -178,7 +179,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     padding:.3rem 1rem;
                     border:solid 1px rgba(0,0,0,.8); 
                 `}
-                placeholder ='Add tag and hit enter...'
+                placeholder='Add tag and hit enter...'
             />
         </Paper>
     );

@@ -5,8 +5,10 @@ import Picker from 'emoji-picker-react';
 import useStyles from "./styles/comment-input";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import { createComment } from "../../../../store/actions/comments";
+import { createNotification } from "../../../../store/actions/notifications";
+
 import { useDispatch } from "react-redux"
-const CommentInput = ({ postId }) => {
+const CommentInput = ({ postCreator, postId }) => {
     const classes = useStyles();
     const [message, setMessage] = useState('');
     const dispatch = useDispatch();
@@ -20,8 +22,8 @@ const CommentInput = ({ postId }) => {
     };
 
     useEffect(() => {
-        if(chosenEmoji){
-            const newMessage =  message + chosenEmoji?.emoji;
+        if (chosenEmoji) {
+            const newMessage = message + chosenEmoji?.emoji;
             setMessage(newMessage);
         }
     }, [chosenEmoji]);
@@ -33,10 +35,13 @@ const CommentInput = ({ postId }) => {
                 message: message,
                 name: user.result.name,
                 isGoogleLogin: (user.result?.imageUrl) ? true : false,
-                avatarSrc: user.result?.imageUrl || user.result.name
+                avatarSrc: user.result?.imageUrl || null
             }
             dispatch(createComment(postId, comment));
             setMessage('');
+            dispatch(createNotification({
+                notificationType: 'comment', userName: user?.result?.name, receiverId: postCreator.id, receiverName: postCreator.name,isPost:true
+            }))
         }
     }
     const handleChange = (e) => {
@@ -63,11 +68,11 @@ const CommentInput = ({ postId }) => {
                 <Button type="submit" className={classes.postButton} color='primary'>
                     Post
             </Button>
-            {toggleEmojiButton &&
-                <div className={classes.emojiPicker}>
-                    <Picker disableSkinTonePicker={true} onEmojiClick={onEmojiClick} pickerStyle={{ height: '13rem',width:'19rem' }} />
+                {toggleEmojiButton &&
+                    <div className={classes.emojiPicker}>
+                        <Picker disableSkinTonePicker={true} onEmojiClick={onEmojiClick} pickerStyle={{ height: '13rem', width: '19rem' }} />
 
-                </div>}
+                    </div>}
             </form>
 
         </>

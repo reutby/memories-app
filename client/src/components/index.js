@@ -3,4 +3,6 @@ export {default as Form} from "./form";
 export {default as Navbar} from "./navbar";
 export {default as Home} from "./home";
 export {default as Auth} from "./auth";
-export {default as Comments} from "./comments"
+export {default as Comments} from "./comments";
+export {default as Notifications} from "./notifications";
+
