@@ -2,9 +2,11 @@ import Mongoose from "mongoose";
 import Notification from "../models/notifications.js";
 
 
+Notification.watch([]);
+
 
 export const getNotifications = (req, res) => {
-    Notification.find({ receiverId: req.userId })
+    Notification.find({})
         .then((result) => res.status(200).json(result))
         .catch(error => res.status(404).json({ message: error.message }));
 
@@ -29,4 +31,13 @@ export const createNotification = (req, res) => {
 }
 
 
+export const deleteNotification = (req,res)=>{
+    const {id} = req.params;
+    console.log(id);
+    Notification.findByIdAndDelete({_id:id})
+    .then(()=>{
+        res.status(201).json({message:`the notification with id: ${id} deleted successfully`});
+    })
+    .catch(err => res.status(409).json({ message: err.message }));
+}
 
