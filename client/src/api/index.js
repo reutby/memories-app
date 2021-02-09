@@ -35,5 +35,6 @@ export const signUp = (formData)=>API.post('/user/signup', formData);
 
 //NOTIFICATIONS
 export const fetchNotifications = ()=>API.get('/notifications');
-export const createNotification = (newNotification)=>API.post('/notifications',newNotification); 
+export const createNotification = (newNotification)=> API.post('/notifications',newNotification); 
+export const deleteNotification = (notificationId)=>API.delete(`/notifications/${notificationId}`);
 

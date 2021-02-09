@@ -3,8 +3,9 @@
 import React, {useState,useEffect} from "react"
 import useStyles from "./styles/navbar";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../store/actions/auth"; 
+import {getNotifications} from "../../store/actions/notifications";
 import { AppBar, Typography, Toolbar, Avatar, Button,IconButton } from "@material-ui/core";
 import memories from "../../assets/images/memories.png";
 import decode from 'jwt-decode';
@@ -12,6 +13,9 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 const Navbar = () => {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const totalNotifications = useSelector((state)=> state.notifications.filter((notification)=> notification.receiverId ===user?.result?.googleId || notification.receiverId === user?.result?._id ).length);
+    const [newNotificationsCount,setNewNotificationsCount] =useState(totalNotifications);
+    const [newNotificationsCountDiff,setNewNotificationsCountDiff] = useState(totalNotifications);
     const classes = useStyles();
     const dispatch = useDispatch();
     const history =useHistory();
@@ -21,6 +25,15 @@ const Navbar = () => {
         history.push('/auth');
         setUser(null);
     }
+    useEffect(() => {
+        dispatch(getNotifications());
+        console.log("navbar useeffect getNotifications");
+    }, [dispatch])
+
+    useEffect(()=>{
+        console.log('navbar totalNotifications change');
+       setNewNotificationsCount(totalNotifications);
+    },[totalNotifications])
 
     useEffect(() => {
         const token = user?.token;
@@ -45,11 +58,11 @@ const Navbar = () => {
                     <div className = {classes.profile}>
                         <div className={classes.notificationsDiv}>
                          
-                         <IconButton component={Link} to='/notifications' className={classes.notificationButton}>
+                         <IconButton component={Link} to='/notifications' className={classes.notificationButton} onClick={()=>setNewNotificationsCount(0)}>
                              <NotificationsNoneIcon className={classes.notificationIcon} fontSize="large"/>
                          </IconButton>
                         
-                        <Typography className={classes.notificationCount}>0</Typography>
+                        <Typography className={classes.notificationCount}>{newNotificationsCount}</Typography>
                         </div>
                         <Avatar className = {classes.purple}
                         alt = {user.result.name}

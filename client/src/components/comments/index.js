@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 import useStyles from './styles/comments';
 import Comment from "./comment";
-import { useSelector } from 'react-redux'
 const Comments = ({ isShow, comments }) => {
 
     const classes = useStyles();

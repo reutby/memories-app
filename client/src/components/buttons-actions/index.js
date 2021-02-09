@@ -7,7 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyle from "./styles/post-buttons-actions";
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../store/actions/posts";
-import { createNotification } from "../../store/actions/notifications";
+import { createNotification} from "../../store/actions/notifications";
 import { likeCommentPost,deleteComment } from '../../store/actions/comments';
 
 const ButtonsActions = ({ isPost, cardComponent,handleClick, iconSize, commentsCount }) => {
@@ -31,7 +31,9 @@ const ButtonsActions = ({ isPost, cardComponent,handleClick, iconSize, commentsC
 
         <>
             <Button size="small" className={classes.actionIcons}
-                disabled={!user?.result} onClick={() => { (isPost ? dispatch(likePost(cardComponent._id)) : dispatch(likeCommentPost(cardComponent._id))) && dispatch(createNotification({notificationType:'like',userName:user?.result?.name,receiverId:cardComponent.creator,receiverName:cardComponent.name,isPost:isPost})) }}>
+                disabled={!user?.result} onClick={() => {
+                     (isPost ? dispatch(likePost(cardComponent._id)) : (dispatch(likeCommentPost(cardComponent._id))))
+                      && dispatch(createNotification({notificationType:'like',userName:user?.result?.name,receiverId:cardComponent.creator,receiverName:cardComponent.name,isPost:isPost}))}}>
                 <Likes />
             </Button>
 

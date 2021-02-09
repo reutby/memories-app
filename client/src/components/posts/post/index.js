@@ -47,7 +47,7 @@ const Post = ({ post, setCurrentId }) => {
             </div>)
             }
             <div className={classes.details}>
-                <Typography variant="bosdy2" className={classes.tags}
+                <Typography variant="body2" className={classes.tags}
                 >
                     {post.tags.map((tag) => `#${tag} `)}
                 </Typography>

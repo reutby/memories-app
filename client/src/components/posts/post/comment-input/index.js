@@ -5,7 +5,7 @@ import Picker from 'emoji-picker-react';
 import useStyles from "./styles/comment-input";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import { createComment } from "../../../../store/actions/comments";
-import { createNotification } from "../../../../store/actions/notifications";
+import { createNotification} from "../../../../store/actions/notifications";
 
 import { useDispatch } from "react-redux"
 const CommentInput = ({ postCreator, postId }) => {

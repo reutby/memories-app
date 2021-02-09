@@ -1,20 +1,19 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Typography, Grid } from "@material-ui/core";
 import useStyles from "./styles/notifications";
-import {useDispatch, useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import Notification from "./notification";
-import {getNotifications} from "../../store/actions/notifications";
+
 const Notifications = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
-    const notifications = useSelector((state) => state.notifications);
-    useEffect(() => {
-        dispatch(getNotifications());    
-    }, [dispatch, notifications])
-
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const notifications = useSelector((state) => state.notifications.filter((notification)=> notification.receiverId ===user?.result?.googleId || notification.receiverId === user?.result?._id ));
+    useEffect(()=>{
+        console.log('notifications use effect active');
+    },[notifications]);
     return (
         <>
-            <Typography variant= "h2">Count :   {notifications.length}</Typography>
+            <Typography variant="h2">Count :   {notifications.length}</Typography>
             <Grid className={classes.notificationsContainer}>
                 {notifications.map((notification) => (
                     <Grid key={notification._id} className={classes.notification} item >
@@ -24,6 +23,7 @@ const Notifications = () => {
                 )}
             </Grid>
         </>
+
     )
 }
 
