@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 
+
 export default makeStyles((theme) => ({
   appBar: {
     borderRadius: 15,
@@ -54,8 +55,6 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
     position:'relative',
-    top:'.5rem',
-    marginRight:'.5rem',
   },
   notificationButton:{
     backgroundColor:'transparent',
@@ -81,6 +80,7 @@ export default makeStyles((theme) => ({
     padding:'0 .3rem',
     fontSize:'.8rem',
   },
+
   [theme.breakpoints.down('sm')] : {
     appBar:{  
       flexDirection:'column !important',

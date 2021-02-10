@@ -22,5 +22,8 @@ export default makeStyles((theme) => ({
         padding:'0',
     },
 
-
+    moment:{
+        float:'right',
+        paddingRight:'1rem',
+    },
 }));

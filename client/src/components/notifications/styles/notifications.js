@@ -14,9 +14,6 @@ export default makeStyles((theme) => ({
             display: 'table',
             clear: 'both',
         },
-        '&:hover':{
-           transform:'scale(1.1)',
-        }
     }
 
 }

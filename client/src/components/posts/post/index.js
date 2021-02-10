@@ -6,13 +6,12 @@ import ButtonsActions from "../../buttons-actions";
 import { Comments } from "../../";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import CommentInput from "./comment-input";
-import { useSelector,useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import useStyle from "./styles/post"
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyle();
     const user = JSON.parse(localStorage.getItem('profile'));
     const [toggleComments, setToggleComments] = useState(false);
-    const dispatch = useDispatch();
     const { comments, countComments } = useSelector((state) => {
         const comments = state.comments.filter((comment) => comment.postId === String(post._id));
         return ({ comments: comments, countComments: comments.length })
