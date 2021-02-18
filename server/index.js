@@ -9,13 +9,6 @@ import commentsRoutes from "./routes/comments.js";
 import notificationsRoutes from "./routes/notifications.js"
 import Pusher from "pusher";
 
-const pusher = new Pusher({
-    appId: "1152837",
-    key: "b9cd641863699b028250",
-    secret: "ec4cabf6faa83aecd4fc",
-    cluster: "mt1",
-    encrypted: true,
-});
 const channel = 'notifications';
 
 const app = express();
@@ -23,6 +16,13 @@ const app = express();
 dotenv.config();
 //prefixing posts to localhost:5000/posts
 
+const pusher = new Pusher({
+    appId: "1152837",
+    key: process.env.PUSHER_KEY,
+    secret: process.env.PUSHER_SECRET,
+    cluster: "mt1",
+    encrypted: true,
+});
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());

@@ -8,7 +8,7 @@ const postSchema = mongoose.Schema({
     tags:[String],
     isGoogleLogin:Boolean,
     avatarSrc:String,
-    selectedFile:String,
+    imageUrl:String,
     likes:{
         type:[String],
         default:[],
