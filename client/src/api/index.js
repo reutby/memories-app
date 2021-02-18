@@ -7,6 +7,7 @@ import axios from "axios";
 //production
 
 //{baseURL:'https://memories-app-prj.herokuapp.com'}
+
 const API = axios.create({baseURL:'http://localhost:5000'});
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
@@ -32,6 +33,7 @@ export const likePostComment = (id) => API.patch(`/comments/${id}/likePost`);
 //USER
 export const signIn = (formData)=>API.post('/user/signin', formData);
 export const signUp = (formData)=>API.post('/user/signup', formData);
+
 
 //NOTIFICATIONS
 export const fetchNotifications = ()=>API.get('/notifications');

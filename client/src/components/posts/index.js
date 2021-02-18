@@ -9,7 +9,7 @@ const Posts = ({setCurrentId}) => {
     const classes = useStyles();
    
     return (
-        !posts.length ? <CircularProgress /> :
+        !posts? <CircularProgress /> :
             (
                 <Grid className={classes.container}
                     container

@@ -8,95 +8,108 @@ export default makeStyles((theme) => ({
     margin: '30px 0',
     display: 'flex !important',
     flexDirection: 'row !important',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    
     padding: '10px 50px',
-    position:'relative',
+    position: 'relative',
+    
   },
   heading: {
     color: '#FF5471',
     textDecoration: 'none',
-    fontSize:'4rem'
+    fontSize: '4rem',
+  },
+  brandContainer:{
+    width:'60%',
+    display:'flex',
   }
-  
   ,
   image: {
-    marginLeft: '15px',
+   position:'relative',
+  
+   marginLeft:'.5rem',
   },
   toolbar: {
-    position:'relative',
-    float:'right',
-    width: '300px',
-    
-  },
-  logout:{
-    padding:'.5rem !important',
-    margin:'1rem  !important',
+    width: '40%',
+    display:'flex',
+   
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-between',
-    width: '300px',
-    '& > *':{
-      margin:'0 1rem',
-      padding:'.2rem',
+    '& > *': {
+      margin: '0 2rem',
+      padding: '.2rem',
     }
   },
-  
-  userName: {
-    display: 'flex',
-    alignItems: 'center',
+  logout: {
+    padding: '.5rem !important',
+    margin: '1rem  !important',
   },
-  brandContainer: {
+
+  userName: {
     display: 'flex',
     alignItems: 'center',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
-    position:'relative',
+    position: 'relative',
   },
-  notificationButton:{
-    backgroundColor:'transparent',
-    
-    '&:hover':{
+  notificationButton: {
+    backgroundColor: 'transparent',
+
+    '&:hover': {
       // backgroundColor:'#FF5471',
     }
   },
-  notificationIcon:{
-    color:'#000',
+  notificationIcon: {
+    color: '#000',
   },
-  notificationsDiv:{
-    position:'relative',
-    margin:'0',
+  notificationsDiv: {
+    position: 'relative',
+    margin: '0',
   },
-  notificationCount:{
-    position:'absolute',
-    display:'inline-block',
-    borderRadius:'100%',
-    backgroundColor:'#f44336',
-    top:'.6rem',
-    right:'.8rem',
-    padding:'0 .3rem',
-    fontSize:'.8rem',
+  notificationCount: {
+    position: 'absolute',
+    display: 'inline-block',
+    borderRadius: '100%',
+    backgroundColor: '#f44336',
+    top: '.6rem',
+    right: '.8rem',
+    padding: '0 .3rem',
+    fontSize: '.8rem',
   },
-
-  [theme.breakpoints.down('sm')] : {
-    appBar:{  
-      flexDirection:'column !important',
-      padding: '10px 10px',
+  [theme.breakpoints.down('md')]:{
+    heading: {
+      fontSize: '2.5rem',
     },
-    heading:{
-      fontSize:'2rem'
+    profile: {
+      '& > *': {
+        margin: '0 1rem',
+        padding: '.2rem',
+      }
+    },
+    brandContainer:{
+      width:'50%'
     },
     toolbar:{
-      padding: '.5rem 0',
-      display:'flex',
+      width:'50%',
+    }
+  },
+  [theme.breakpoints.down('sm')]: {
+    appBar: {
+      flexDirection: 'column !important',
+      padding: '10px 10px',
+      justifyContent:'center !important',
       alignItems:'center',
-      justifyContent:'center',
     },
-    profile:{
-     
+    heading:{
+      textAlign:'center',
+    },
+    brandContainer:{
+      width:'auto'
+    },
+    toolbar:{
+      width:'auto',
     }
   },
 }));

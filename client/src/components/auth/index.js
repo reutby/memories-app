@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { GoogleLogin } from 'react-google-login';
 
-import { GoogleLogin } from 'react-google-login'
-
-import { useHistory } from "react-router-dom"
-import { useDispatch } from "react-redux"
-
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {uploadImage} from "../../api/upload-image";
 import { authSuccess, signin, signup } from "../../store/actions/auth"
 import LockOutLinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles/auth";
@@ -17,8 +16,9 @@ const initialState = {
     firstName: '',
     lastName: '',
     email: '',
+    userName: '',
     password: '',
-    confirmedPassword: ''
+    confirmedPassword: '',
 }
 const Auth = () => {
     const classes = useStyles();
@@ -26,18 +26,30 @@ const Auth = () => {
     const history = useHistory();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
-
+    const [uploadFile, setUploadFile] = useState(null);
     const [formData, setFormData] = useState(initialState);
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
 
         e.preventDefault();
         if (isSignup) {
-            dispatch(signup(formData, history))
+            if (uploadFile) {
+                const url = await uploadImage(uploadFile);
+                console.log(url);
+                dispatch(signup({...formData,imageUrl:url},history));
+            }
+            else{
+                dispatch(signup({...formData,imageUrl:null},history));
+            }
         }
         else {
             dispatch(signin(formData, history));
 
         }
+    }
+
+    const handleUpload = e => {
+        const files = e.target.files;
+        setUploadFile(files[0]);
     }
     const handleChange = e => {
 
@@ -45,7 +57,8 @@ const Auth = () => {
         setFormData({
             ...formData,
             [name]: value
-        })
+        });
+
 
     }
     const switchMode = () => {
@@ -71,6 +84,7 @@ const Auth = () => {
         console.log(err, 'Google sign in was unsuccessful. Try again later');
 
     }
+
     return (
         <Container component="main" maxWidth='xs'>
             <Paper className={classes.paper} elevation={3}>
@@ -111,6 +125,13 @@ const Auth = () => {
                             )
                         }
                         <Input
+                            name="userName"
+                            label="User Name"
+                            handleChange={handleChange}
+                            type="text"
+                        // value={formData.userName}
+                        />
+                        <Input
                             name="email"
                             label="Email Address"
                             handleChange={handleChange}
@@ -131,13 +152,24 @@ const Auth = () => {
                             type='password'
                         // value={formData.confirmedPassword}
                         />}
+                        {isSignup &&
+
+                            <input
+                                type="file"
+                                name="avatarFile"
+                                placeholder="Upload avatar"
+                                multiple={false}
+                                id="upload-button"
+                                onChange={handleUpload}
+                            />
+                        }
                     </Grid>
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}
 
                     </Button>
                     <GoogleLogin
-                        clientId="749507654257-mn3dl2p8a3t3g16sfbb6pl35m1bkdlc2.apps.googleusercontent.com"
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         render={(renderProps) => (
                             <Button className={classes.googleButton} color='primary' fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
                                 Google Sign In

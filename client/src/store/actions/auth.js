@@ -1,6 +1,6 @@
 import * as actionTypes from "./actiontypes";
 import * as api from "../../api";
-
+import {addNewUser} from "../../api/chat";
 export const authSuccess = (data) =>
     ({
         type: actionTypes.AUTH_SUCCESS,
@@ -25,11 +25,14 @@ export const signup = (formData,history)=>async(dispatch)=>{
     try {
         const {data} = await api.signUp(formData);
         //login the user
+        addNewUser(data);
         dispatch({type: actionTypes.SIGNUP, data:data});
+        
         history.push('/');
         
     } catch (error) {
         console.log(error);
     }
+
 }
  

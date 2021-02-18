@@ -12,7 +12,7 @@ const authReducer = (auth = { authData: null }, action) => {
             localStorage.clear();
             return { ...auth, authData: null };
         default:
-            return auth;
+            return {authData:JSON.parse(localStorage.getItem('profile'))} || auth;
 
     }
 }

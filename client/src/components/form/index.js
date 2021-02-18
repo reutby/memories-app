@@ -4,7 +4,7 @@ import FileBase from "react-file-base64"
 import { TextField, Button, Container, Typography, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux"
 import { TagInput } from 'reactjs-tag-input';
-
+import { uploadImage } from '../../api/upload-image'
 
 import useStyles from "./styles/form";
 
@@ -13,11 +13,12 @@ const Form = ({ currentId, setCurrentId }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
     const classes = useStyles();
+    const [uploadFile, setUploadFile] = useState(null);
     const [postData, setPostData] = useState({
         title: '',
         message: '',
         tags: [],
-        selectedFile: ''
+        imageUrl: ''
     });
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
 
@@ -41,24 +42,31 @@ const Form = ({ currentId, setCurrentId }) => {
             title: '',
             message: '',
             tags: [],
-            selectedFile: ''
+            imageUrl:''
         })
     }
-
-    const handleSubmit = (e) => {
+    const handleUpload = e => {
+        const files = e.target.files;
+       
+        setUploadFile(files[0]);
+    }
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const tagsUpdate = postData.tags.map((tag) => tag.displayValue);
+       
+        const url = await uploadImage(uploadFile);
         if (currentId) {
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, tags: tagsUpdate }));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, tags: tagsUpdate, imageUrl:url }));
         }
         else {
             dispatch(createPost({
                 ...postData, name: user?.result?.name, tags: tagsUpdate, isGoogleLogin: (user.result?.imageUrl) ? true : false,
-                avatarSrc: user.result?.imageUrl || null
+                avatarSrc: user.result?.imageUrl || null, imageUrl: url
             }));
 
         }
         handelClear();
+        setUploadFile(null);
 
     }
     if (!user?.result?.name) {
@@ -110,29 +118,16 @@ const Form = ({ currentId, setCurrentId }) => {
                         )
                     }} />
 
-                {/* <TextField
-                    name="tags"
-                    variant="outlined"
-                    label="Tags"
-                    fullWidth
-                    value={postData.tags}
-                    onChange={(e) => {
-                        setPostData({
-                            ...postData,
-                            tags: e.target.value.split(',')
-                        }
-                        )
-                    }} /> */}
-                <div>
-                    <FileBase
-                        type="file"
-                        multiple={false}
-                        onDone={({ base64 }) => setPostData({
-                            ...postData,
-                            selectedFile: base64
-                        })}
-                    />
-                </div>
+                <input
+                    type="file"
+                    name="imageFile"
+                    placeholder="Upload Image"
+                    multiple={false}
+                    required
+                    id="upload-button"
+                    onChange={handleUpload}
+                />
+
                 <Button className={classes.buttonSubmit}
                     variant="contained"
                     color="primary"

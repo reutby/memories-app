@@ -16,7 +16,6 @@ export const getNotifications = () => async (dispatch) => {
 export const createNotification = (notification) => async (dispatch) => {
     try {
         const { data } = await api.createNotification(notification);
-        console.log(data, "createNotification action");
         dispatch({ type: actionTypes.CREATE_NOTIFICATION, payload: data });
     } catch (err) {
         console.log(err);

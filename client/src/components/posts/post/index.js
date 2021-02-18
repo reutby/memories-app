@@ -25,13 +25,13 @@ const Post = ({ post, setCurrentId }) => {
 
         <Card className={classes.card}>
             <CardMedia className={classes.media}
-                image={post.selectedFile}
+                image={post.imageUrl}
                 title={post.title}
             />
             <div className={classes.overlay}>
                 <Avatar className={classes.avatar}
                     alt={post.name}
-                    src={post.avatar}>
+                    src={post.avatarSrc}>
                     {post.name.charAt(0).toUpperCase()}
                 </Avatar>
                 <Typography variant="h6" className={classes.creatorName}>{post.name}</Typography>

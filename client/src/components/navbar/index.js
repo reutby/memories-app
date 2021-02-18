@@ -40,7 +40,7 @@ const Navbar = () => {
     }, [totalNotifications])
 
     useEffect(() => {
-        const pusher = new Pusher('b9cd641863699b028250',
+        const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY,
             {
                 cluster: 'mt1',
                 encrypted: true,
