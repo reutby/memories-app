@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
         dispatch(getUserPosts(location.substr(1,location.length)));
 
-    }, [dispatch])
+    }, [dispatch,location])
     return (
             <Grow in>
 
