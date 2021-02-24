@@ -23,6 +23,8 @@ export const updatePost = (id, updatedPost)=> API.patch(`/posts/${id}`,updatedPo
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
+export const fetchUserPosts = (id)=>API.get(`/posts/profile/${id}`);
+export const getPostById = (id) => API.get(`/posts/${id}`);
 //COMMENT
 export const fetchComments = ()=>API.get(`/comments`);
 export const createPostComment = (newComment,currentPost)=>API.post(`/comments?postId=${currentPost}`,newComment); 
