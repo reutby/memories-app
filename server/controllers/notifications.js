@@ -33,7 +33,7 @@ export const createNotification = (req, res) => {
 
 export const deleteNotification = (req,res)=>{
     const {id} = req.params;
-    console.log(id);
+   
     Notification.findByIdAndDelete({_id:id})
     .then(()=>{
         res.status(201).json({message:`the notification with id: ${id} deleted successfully`});
