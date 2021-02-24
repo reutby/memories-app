@@ -3,10 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from "dotenv";
-import postRoutes from "./routes/posts.js";
-import userRoutes from "./routes/users.js";
-import commentsRoutes from "./routes/comments.js";
-import notificationsRoutes from "./routes/notifications.js"
+import {postRoutes,userRoutes,commentsRoutes,notificationsRoutes,profilesRoutes} from "./routes/index.js";
 import Pusher from "pusher";
 
 const channel = 'notifications';
@@ -21,7 +18,7 @@ const pusher = new Pusher({
     key: process.env.PUSHER_KEY,
     secret: process.env.PUSHER_SECRET,
     cluster: "mt1",
-    encrypted: true,
+    useTLS: true,
 });
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -31,6 +28,7 @@ app.use('/posts',postRoutes);
 app.use('/user', userRoutes);
 app.use('/comments', commentsRoutes);
 app.use('/notifications',notificationsRoutes);
+app.use('/profiles',profilesRoutes);
 app.get('/', (req,res)=>{
     res.send('Hello to memories API');
 });
