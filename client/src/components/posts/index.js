@@ -4,25 +4,30 @@ import { Grid, CircularProgress } from "@material-ui/core"
 import {useSelector} from "react-redux";
 import Post from "./post";
 import useStyles from "./styles/posts";
+import {useLocation} from "react-router-dom";
+
 const Posts = ({setCurrentId}) => {
     const posts = useSelector((state) => state.posts);
     const classes = useStyles();
-   
+    const location = useLocation();
+    const isHomePage = location.pathname ==='/';
+    
     return (
-        !posts? <CircularProgress /> :
+        !posts ? <CircularProgress /> :
             (
-                <Grid className={classes.container}
+                <Grid 
                     container
-                    alignItems="stretch"
+                    
                     spacing={3}>
                     {posts.map((post) => (
                         <Grid
                             key={post._id}
                             item
-                            xs={12}
-                            sm={12} 
+                            sm={12}
+                            md={isHomePage?12:4}
+                             
                             className={classes.post}>
-                            <Post post ={post} setCurrentId={setCurrentId}/>
+                            <Post post ={post} isHome={isHomePage} setCurrentId={setCurrentId}/>
                         </Grid>
                     ))}
                 </Grid>

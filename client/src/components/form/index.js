@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import FileBase from "react-file-base64"
 import { TextField, Button, Container, Typography, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux"
 import { TagInput } from 'reactjs-tag-input';

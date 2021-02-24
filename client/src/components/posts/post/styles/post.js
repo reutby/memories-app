@@ -9,10 +9,12 @@ export default makeStyles((theme) => ({
     backgroundBlendMode: 'darken',
     borderBottom: '2px solid #fff'
   },
+  buttonAvatar:{
+    float: 'left',
+  },
   avatar: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
-    float: 'left',
     marginRight: '1rem',
     top: '.3rem',
 

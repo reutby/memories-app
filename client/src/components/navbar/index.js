@@ -67,7 +67,7 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography component={Link} to='/' className={classes.heading} align="center"> Memo Zone</Typography>
+                <Typography component={Link} to='/' className={classes.heading} align="center"> Inst-Moment</Typography>
                 <img src={memories} className={classes.image} alt="memories" height="60" />
             </div>
             <Toolbar className={classes.toolbar}>
@@ -82,7 +82,8 @@ const Navbar = () => {
                             {newNotificationsCount ? <Grow in><Typography className={classes.notificationCount}>{newNotificationsCount}</Typography></Grow> : null}
                         </div>
                         <BootstrapTooltip title="Profile">
-                            <Button>
+                            <Button component ={Link} to = {`/${user.result?._id || user.result?.googleId}`} 
+                            onClick={()=>{}}>
                                 <Avatar className={classes.purple}
                                     alt={user.result.name}
                                     src={user.result.imageUrl}>

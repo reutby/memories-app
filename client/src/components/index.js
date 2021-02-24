@@ -5,4 +5,6 @@ export {default as Home} from "./home";
 export {default as Auth} from "./auth";
 export {default as Comments} from "./comments";
 export {default as Notifications} from "./notifications";
-
+export {default as ProfilePage } from "./profile-page";
+export {default as PostPage } from "./post-page";
+export {default as Profile} from "./profile";
