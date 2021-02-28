@@ -9,7 +9,7 @@ const App = () => {
     const classes = useStyles();
     return (
         <BrowserRouter>
-            <Container maxWidth="lg">
+            <Container maxWidth='lg' className = {classes.topContainer}>
                 <Navbar />
                 <Switch>
                     <Route path='/' exact component={Home} />
