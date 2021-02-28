@@ -4,6 +4,7 @@ const profileSchema = mongoose.Schema({
    
     userId:String,
     name:String,
+    userName:String,
     imageUrl:String, //avatar
     followers:{
         type:[String],
