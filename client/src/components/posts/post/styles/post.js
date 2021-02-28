@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     backgroundBlendMode: 'darken',
     borderBottom: '2px solid #fff'
   },
-  buttonAvatar:{
+  buttonAvatar: {
     float: 'left',
   },
   avatar: {
@@ -32,13 +32,13 @@ export default makeStyles((theme) => ({
     border: '2px rgb(255,255,255)',
     boxShadow: '0 2rem 3rem #252525',
     display: 'flex',
-    paddingBottom: '.5rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: '#252525',
     height: '100%',
     position: 'relative',
     color: 'white',
+    paddingBottom: '0',
   },
   overlay: {
     position: 'absolute',
@@ -79,6 +79,26 @@ export default makeStyles((theme) => ({
     padding: '0 8px 8px 8px',
     display: 'flex',
     // justifyContent: 'space-between',
+  },
+  postContent: {
+    position: "absolute",
+    visibility: 'hidden',
+
+
+  },
+  gotoPost: {
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0,.8)',
+    padding: 'auto 0',
+    position: 'absolute',
+    bottom: '1rem',
+    borderRadius:'5px 0 0 5px',
+    right: '0',
+    transition:'all .5s',
+    '&:hover':{
+      backgroundColor:'rgba(255,255,255,.6)',
+      color:'black'
+    }
   },
 }
 

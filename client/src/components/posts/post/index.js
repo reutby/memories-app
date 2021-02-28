@@ -32,7 +32,7 @@ const Post = ({ post, setCurrentId, isHome }) => {
                 image={post.imageUrl}
                 title={post.title}
             />
-            <div className={classes.overlay}>
+            {isHome && <div className={classes.overlay}>
                 <Button component={Link} to={`/${post.creator}`} className={classes.buttonAvatar} >
                     <Avatar className={classes.avatar}
                         alt={post.name}
@@ -42,37 +42,41 @@ const Post = ({ post, setCurrentId, isHome }) => {
                 </Button>
                 <Typography variant="h6" className={classes.creatorName}>{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createAt).fromNow()}</Typography>
-            </div>
+            </div>}
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (<div className={classes.overlay2}>
-                {isHome ? <Button style={{ color: 'white' }}
+                {isHome && <Button style={{color: 'white' }}
                     size="small"
                     onClick={() => { setCurrentId(post._id) }}>
                     <MoreHorizIcon fontSize="default" />
-                </Button> :
-                    <BootstrapTooltip title="go to post">
-                        <Button size="small" style={{ color: 'white',position:'relative',left:'1.5rem' }} onClick={() => { }}>
-                            <ArrowForwardIosIcon />
-                        </Button>
-                    </BootstrapTooltip>}
+                </Button> 
+                }
             </div>)
             }
-            <div className={classes.details}>
-                <Typography variant="body2" className={classes.tags}
-                >
-                    {post.tags.map((tag) => `#${tag} `)}
-                </Typography>
+            <div className={!isHome ? classes.postContent : null}>
+                {isHome && <div className={classes.details}>
+                    <Typography variant="body2" className={classes.tags}
+                    >
+                        {post.tags.map((tag) => `#${tag} `)}
+                    </Typography>
+                </div>
+                }
+                <Typography className={classes.title}
+                    variant="h5"
+                    gutterBottom>{post.title}</Typography>
+                {isHome &&<CardContent>
+                    
+                        <Typography
+                            variant="body2"
+                            component="p"
+                        >{post.message}</Typography>
+                </CardContent>}
             </div>
-
-            <Typography className={classes.title}
-                variant="h5"
-                gutterBottom>{post.title}</Typography>
-
-            <CardContent>
-                <Typography
-                    variant="body2"
-                    component="p"
-                >{post.message}</Typography>
-            </CardContent>
+            {!isHome && 
+                <BootstrapTooltip title="go to post">
+                        <Button size="small" className={classes.gotoPost} onClick={() =>{  }}>
+                            <ArrowForwardIosIcon style={{position:'relative', left:'1rem'}} />
+                        </Button>
+                    </BootstrapTooltip>}
             {isHome && <><CardActions className={classes.cardActions}>
                 <ButtonsActions cardComponent={post} commentsCount={countComments} handleClick={handleCommentsClick} iconSize="default" isPost />
 

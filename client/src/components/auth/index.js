@@ -4,8 +4,9 @@ import { GoogleLogin } from 'react-google-login';
 
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {uploadImage} from "../../api/upload-image";
-import { authSuccess, signin, signup } from "../../store/actions/auth"
+import { authSuccess, signin, signup } from "../../store/actions/auth";
+import {createProfile} from "../../store/actions/profiles";
+
 import LockOutLinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles/auth";
 import Input from "./input";
@@ -28,22 +29,18 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const [uploadFile, setUploadFile] = useState(null);
     const [formData, setFormData] = useState(initialState);
+    
     const handleSubmit = async(e) => {
 
         e.preventDefault();
         if (isSignup) {
-            if (uploadFile) {
-                const url = await uploadImage(uploadFile);
-                console.log(url);
-                dispatch(signup({...formData,imageUrl:url},history));
-            }
-            else{
-                dispatch(signup({...formData,imageUrl:null},history));
-            }
+            
+            const url = await dispatch(signup({...formData},uploadFile,history)); 
+            console.log(url);  
+            dispatch(createProfile({name: `${formData.firstName} ${formData.lastName}`,userName:formData.userName,imageUrl:url}));
         }
         else {
             dispatch(signin(formData, history));
-
         }
     }
 
@@ -73,6 +70,7 @@ const Auth = () => {
         const token = res?.tokenId;
         try {
             dispatch(authSuccess({ result, token }));
+            dispatch(createProfile({name:result.name,userName:result.name,imageUrl:result.imageUrl}));
             history.push('/');
         } catch (err) {
             console.log(err);

@@ -1,16 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  mainContainerHome: {
-    // display: 'flex',
-    // flexDirection:'column',
-    // justifyContent:'center',
-    
+  posts:{
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
   },
   mainContainerProfile: {
     display: 'flex',
     flexWrap:'wrap',
-    alignItems:'flex-start',
+    marginTop:'1rem',
   },
   
   
@@ -21,15 +21,21 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
   },
   post:{
-    position:'relative',
-    margin:'1rem 0',
+    width:'100%',
   },
+  // post:{
+  //   position:'relative',
+  //   margin:'1rem 0',
+  // },
   [theme.breakpoints.down('sm')] :{
     post:{
-      position:'relative',
-      width:'100%',
-      padding:'12px 0 !important',
-      margin:'1rem 0',
+      width:'95%',
+      // padding:'12px 0 !important',
+      // margin:'1rem 0',
+    },
+    mainContainerProfile:{
+      alignItems:'center',
+      justifyContent:'center',
     }
   }
 }));

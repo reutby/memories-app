@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React,{useEffect} from "react";
 import { Grid, CircularProgress } from "@material-ui/core"
 import {useSelector} from "react-redux";
 import Post from "./post";
@@ -7,15 +7,17 @@ import useStyles from "./styles/posts";
 import {useLocation} from "react-router-dom";
 
 const Posts = ({setCurrentId}) => {
-    const posts = useSelector((state) => state.posts);
     const classes = useStyles();
-    const location = useLocation();
-    const isHomePage = location.pathname ==='/';
-    
+    const location = useLocation().pathname;
+    const isHomePage = location ==='/';
+    const posts = useSelector((state) => isHomePage? state.posts : state.posts.filter((post)=>post.creator ===location.substr(1,location.length-1)));
+    useEffect(() => {
+        
+    }, [posts])
     return (
         !posts ? <CircularProgress /> :
             (
-                <Grid 
+                <Grid className={isHomePage?classes.posts : classes.mainContainerProfile}
                     container
                     
                     spacing={3}>

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { Container, Grow } from '@material-ui/core'
 import { Posts, Profile } from "../";
 import useStyle from "./styles/profile-page";
-import { getUserPosts } from "../../store/actions/posts";
+import {fetchAllProfiles} from "../../store/actions/profiles";
+import {getPosts} from "../../store/actions/posts";
 import { useDispatch } from 'react-redux';
 import {useLocation} from 'react-router-dom';
 const ProfilePage = () => {
@@ -12,14 +13,14 @@ const ProfilePage = () => {
     const location = useLocation().pathname;
     useEffect(() => {
 
-        dispatch(getUserPosts(location.substr(1,location.length)));
-
+        dispatch(fetchAllProfiles());
+        dispatch(getPosts());
     }, [dispatch,location])
     return (
             <Grow in>
 
                 <Container className={classes.mainContainer}>
-                    <div item className={classes.ProfileContainer}>
+                    <div className={classes.ProfileContainer}>
                         <Profile user={user} />
                     </div>
                     <Posts />

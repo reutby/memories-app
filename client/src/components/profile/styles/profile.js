@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     paper: {
         position: 'relative',
-        padding: theme.spacing(2),
-        borderRadius: '15px',
-        width: '30rem',
-
+        padding: theme.spacing(6),
+        width: '40rem',
+        boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
+       
     },
     profileDiv: {
         display: 'flex',
@@ -25,8 +25,8 @@ export default makeStyles((theme) => ({
         marginBottom:'1rem',
     },
     avatar: {
-        width: '8rem',
-        height: '8rem',
+        width: '10rem',
+        height: '10rem',
 
 
     },
@@ -47,5 +47,36 @@ export default makeStyles((theme) => ({
     highlightCount:{
         fontWeight:'bold',
     }
+    ,
+    followButton:{
+        marginTop:'2rem',
+        
+    },
 
+    [theme.breakpoints.down('sm')]:{
+        paper:{
+            width:'100%',
+            display:'flex',
+            justifyContent:'center',
+        },
+        profileDiv:{
+            flexDirection:'column',
+            justifyContent:'center',
+            alignItems:'center',
+            flex:'0 0 100%',
+        },
+        profileInfo:{
+            marginLeft:'0',
+        },
+        infoContent:{
+            flexDirection:'column',
+            justifyContent:'center',
+            alignItems:'center',
+        },
+        avatar:{
+            width:'6rem',
+            height:'6rem',
+        }
+
+    }
 }));
