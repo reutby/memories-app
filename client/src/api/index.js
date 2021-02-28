@@ -45,7 +45,7 @@ export const deleteNotification = (notificationId)=>API.delete(`/notifications/$
 //PROFILES
 
 export const fetchAllProfiles = ()=>API.get('/profiles');
-export const createProfile = (newProfile)=>API.post('/profiles');
+export const createProfile = (newProfile)=>API.post('/profiles',newProfile);
 
 export const addFollower = (id,followerId)=>API.post(`/profiles/followers/${id}`,followerId);
 export const addFollowing = (id,followingId)=>API.post(`/profiles/followings/${id}`,followingId);
