@@ -5,8 +5,8 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import {postRoutes,userRoutes,commentsRoutes,notificationsRoutes,profilesRoutes} from "./routes/index.js";
 import Pusher from "pusher";
+import {addNotificationStream} from "./helpers/notifications-stream.js"
 
-const channel = 'notifications';
 
 const app = express();
 
@@ -42,27 +42,5 @@ const db = mongoose.connection;
 db.on('error',console.error.bind(console, 'Connection Error:'));
 db.once('open', ()=>{
     app.listen(port,() => console.log(`server running on port: ${port}`));
-    const notificationsCollection = db.collection('notifications');
-    const changeStream = notificationsCollection.watch();
-
-    changeStream.on('change',(change=>{
-        switch(change.operationType){
-            case 'insert':
-                const notification = change.fullDocument;
-                pusher.trigger(channel,
-                    'inserted',{
-                    ...notification
-                });
-                return
-            case 'delete':
-                pusher.trigger(
-                    channel,
-                    'deleted',
-                    change.documentKey._id
-                );
-            default:
-                console.log(`event ${change.operationType} not handle in the switch statement`);         
-        }
-    }))
-
+    addNotificationStream(pusher);
 })
