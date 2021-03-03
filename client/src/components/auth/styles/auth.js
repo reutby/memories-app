@@ -27,4 +27,14 @@ export default makeStyles((theme) => ({
   googleButton: {
     marginBottom: theme.spacing(2),
   },
+  errorDiv:{
+    height:'2rem',
+    position:'relative',
+    top:'1rem',
+    display:'flex',
+    alignItems:'center',
+  },
+  errorMessage:{
+    color:'red',
+  }
 }));

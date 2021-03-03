@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 
+import {clearError} from "../../store/actions/error"
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSuccess, signin, signup } from "../../store/actions/auth";
-import {createProfile} from "../../store/actions/profiles";
+import { createProfile } from "../../store/actions/profiles";
 
 import LockOutLinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles/auth";
@@ -25,19 +26,25 @@ const Auth = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
+    const error = useSelector((state) => state.error.error);
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [uploadFile, setUploadFile] = useState(null);
     const [formData, setFormData] = useState(initialState);
-    
-    const handleSubmit = async(e) => {
+
+    useEffect(() => {
+        console.log(error);
+        return ()=>dispatch(clearError());
+    }, [error]);
+
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
         if (isSignup) {
-            
-            const url = await dispatch(signup({...formData},uploadFile,history)); 
-            console.log(url);  
-            dispatch(createProfile({name: `${formData.firstName} ${formData.lastName}`,userName:formData.userName,imageUrl:url}));
+
+            const url = await dispatch(signup({ ...formData }, uploadFile, history));
+            console.log(url);
+            dispatch(createProfile({ name: `${formData.firstName} ${formData.lastName}`, userName: formData.userName, imageUrl: url }));
         }
         else {
             dispatch(signin(formData, history));
@@ -59,7 +66,8 @@ const Auth = () => {
 
     }
     const switchMode = () => {
-        setIsSignup(prevState => !prevState)
+        setIsSignup(prevState => !prevState);
+        dispatch(clearError());
     }
     const handleShowPassword = () => {
         setShowPassword((prevState) => !prevState)
@@ -70,7 +78,7 @@ const Auth = () => {
         const token = res?.tokenId;
         try {
             dispatch(authSuccess({ result, token }));
-            dispatch(createProfile({name:result.name,userName:result.name,imageUrl:result.imageUrl}));
+            dispatch(createProfile({ name: result.name, userName: result.name, imageUrl: result.imageUrl }));
             history.push('/');
         } catch (err) {
             console.log(err);
@@ -162,6 +170,7 @@ const Auth = () => {
                             />
                         }
                     </Grid>
+                    {error && <div className={classes.errorDiv}><Typography variant="body1" className={classes.errorMessage}>{error}</Typography></div>}
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}
 
@@ -186,7 +195,6 @@ const Auth = () => {
                         </Grid>
                     </Grid>
                 </form>
-
             </Paper>
         </Container>)
 }
