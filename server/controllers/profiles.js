@@ -16,7 +16,7 @@ export const createProfile = (req, res) => {
         then(result => {
             console.log(result);
             if (result) {
-                return res.status(400).json({ message: 'Profile already exist' });
+                return res.status(200).json({ message: 'Profile already exist' });
             }
             const newProfile = new Profile({ ...profile, userId: req.userId });
             newProfile.save()

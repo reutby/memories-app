@@ -4,13 +4,13 @@ import auth from "../middleware/auth.js";
 
  const router = express.Router();
 
-router.get('/',auth, getAllProfiles);
+router.get('/', getAllProfiles);
 router.post('/',auth, createProfile);
 
-router.get('/followers/:id',auth,getFollowers);
-router.post('/followers/:id',auth,addFollower);
+router.get('/followers/:id',getFollowers);
+router.post('/followers/:id',addFollower);
 
-router.get('/followings/:id',auth, getFollowings);
-router.post('/followings/:id',auth, addFollowing);
+router.get('/followings/:id', getFollowings);
+router.post('/followings/:id', addFollowing);
 
 export default router;

@@ -5,7 +5,7 @@ import auth from "../middleware/auth.js";
  const router = express.Router();
 
 
- router.get('/',auth, getNotifications);
+ router.get('/', getNotifications);
  router.post('/',auth,createNotification);
- router.delete('/:id',auth, deleteNotification);
+ router.delete('/:id',deleteNotification);
 export default router;
