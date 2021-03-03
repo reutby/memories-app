@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addFollower, addFollowing} from "../../../store/actions/profiles";
 const SearchResultItem = ({ profileItem, userProfile }) => {
-   
+    
     const classes = useStyles();
     const dispatch = useDispatch();
     const addFollowingHandler = ()=>{

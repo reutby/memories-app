@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
         transition:'all 1s .5s',
     },
     searchInput: {
-        flex: '0 0 30%',
+        flex: '0 0 20%',
         
         fontFamily:'inherit',
         backgroundColor: '#fff',
