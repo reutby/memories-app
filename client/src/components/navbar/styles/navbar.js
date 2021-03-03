@@ -11,27 +11,27 @@ export default makeStyles((theme) => ({
     
     padding: '10px 50px',
     position: 'relative',
-    
+
   },
   heading: {
     color: '#FF5471',
     textDecoration: 'none',
     fontSize: '4rem',
   },
-  brandContainer:{
-    width:'60%',
-    display:'flex',
+  brandContainer: {
+    width: '60%',
+    display: 'flex',
   }
   ,
   image: {
-   position:'relative',
-  
-   marginLeft:'.5rem',
+    position: 'relative',
+
+    marginLeft: '.5rem',
   },
   toolbar: {
     width: '40%',
-    display:'flex',
-   
+    display: 'flex',
+
   },
   profile: {
     display: 'flex',
@@ -48,6 +48,7 @@ export default makeStyles((theme) => ({
   userName: {
     display: 'flex',
     alignItems: 'center',
+    textTransform:'capitalize',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
@@ -56,13 +57,10 @@ export default makeStyles((theme) => ({
   },
   notificationButton: {
     backgroundColor: 'transparent',
-
-    '&:hover': {
-      // backgroundColor:'#FF5471',
-    }
   },
   notificationIcon: {
-    color: '#000',
+    
+   
   },
   notificationsDiv: {
     position: 'relative',
@@ -78,7 +76,7 @@ export default makeStyles((theme) => ({
     padding: '0 .3rem',
     fontSize: '.8rem',
   },
-  [theme.breakpoints.down('md')]:{
+  [theme.breakpoints.down('md')]: {
     heading: {
       fontSize: '2.5rem',
     },
@@ -88,28 +86,28 @@ export default makeStyles((theme) => ({
         padding: '.2rem',
       }
     },
-    brandContainer:{
-      width:'50%'
+    brandContainer: {
+      width: '50%'
     },
-    toolbar:{
-      width:'50%',
+    toolbar: {
+      width: '50%',
     }
   },
   [theme.breakpoints.down('sm')]: {
     appBar: {
       flexDirection: 'column !important',
       padding: '10px 10px',
-      justifyContent:'center !important',
-      alignItems:'center',
+      justifyContent: 'center !important',
+      alignItems: 'center',
     },
-    heading:{
-      textAlign:'center',
+    heading: {
+      textAlign: 'center',
     },
-    brandContainer:{
-      width:'auto'
+    brandContainer: {
+      width: 'auto'
     },
-    toolbar:{
-      width:'auto',
+    toolbar: {
+      width: 'auto',
     }
   },
 }));

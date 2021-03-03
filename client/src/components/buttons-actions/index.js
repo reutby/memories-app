@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {useSelector} from "react-redux"
 import { Button } from "@material-ui/core";
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -12,7 +13,7 @@ import { likeCommentPost,deleteComment } from '../../store/actions/comments';
 
 const ButtonsActions = ({ isPost, cardComponent,handleClick, iconSize, commentsCount }) => {
     const classes = useStyle();
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const user = useSelector((state)=>state.auth.authData);
     const dispatch = useDispatch();
     const Likes = () => {
         if (cardComponent.likes.length > 0) {

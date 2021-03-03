@@ -12,10 +12,10 @@ const ProfilePage = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const location = useLocation().pathname;
     useEffect(() => {
-
         dispatch(fetchAllProfiles());
         dispatch(getPosts());
-    }, [dispatch,location])
+    }, [dispatch,location, user])
+
     return (
             <Grow in>
 
@@ -23,7 +23,7 @@ const ProfilePage = () => {
                     <div className={classes.ProfileContainer}>
                         <Profile user={user} />
                     </div>
-                    <Posts />
+                    <Posts  userId={user?.result?.googleId || user?.result?.id}/>
 
                 </Container>
 

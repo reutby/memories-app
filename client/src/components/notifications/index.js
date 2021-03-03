@@ -7,7 +7,7 @@ import Pusher from 'pusher-js';
 import { getNotifications } from "../../store/actions/notifications"
 const Notifications = () => {
     const classes = useStyles();
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const user = useSelector(state=>state.auth.authData);
     const notifications = useSelector((state) => state.notifications.filter((notification) => notification.receiverId === user?.result?.googleId || notification.receiverId === user?.result?._id));
     const dispatch = useDispatch();
     useEffect(() => {

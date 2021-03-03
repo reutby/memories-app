@@ -4,26 +4,26 @@ import useStyle from "./styles/profile";
 import { useSelector, useDispatch } from "react-redux";
 
 import { useLocation } from "react-router-dom";
-import { addFollower, addFollowing} from "../../store/actions/profiles";
+import { addFollower, addFollowing } from "../../store/actions/profiles";
 
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-const Profile = ({ user}) => {
-    
+const Profile = ({ user }) => {
+
     const location = useLocation().pathname;
     const profiles = useSelector(state => state.profiles);
-    const countPosts = useSelector(state=> state.posts.filter((post)=>post.creator ===location.substr(1,location.length-1))).length;
+    const countPosts = useSelector(state => state.posts.filter((post) => post.creator === location.substr(1, location.length - 1))).length;
     const [currentProfile, setCurrentProfile] = useState(null);
     const [userOnlineProfile, setUserOnlineProfile] = useState(null);
-   
+
     const dispatch = useDispatch();
 
     const isMyProfile = location.substr(1, location.length - 1) === user.result?._id ||
         location.substr(1, location.length - 1) === user.result?.googleId;
-    
+
     const classes = useStyle();
 
     useEffect(() => {
-        
+
         const currProfileId = location.substr(1, location.length - 1);
         let profileIndex = profiles.findIndex((element) => element.userId === currProfileId);
         if (profileIndex !== -1) {
@@ -42,13 +42,13 @@ const Profile = ({ user}) => {
             }
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profiles]);
-    
+
     const followerHandler = () => {
-        dispatch(addFollowing(userOnlineProfile.userId, {followingId:currentProfile.userId}));
-        dispatch(addFollower(currentProfile.userId,{followerId:userOnlineProfile.userId}));
-        
+        dispatch(addFollowing(userOnlineProfile.userId, { followingId: currentProfile.userId }));
+        dispatch(addFollower(currentProfile.userId, { followerId: userOnlineProfile.userId }));
+
     }
     return (
         <Paper className={classes.paper}>
@@ -63,13 +63,13 @@ const Profile = ({ user}) => {
                     }
                     <div className={classes.profileDiv}>
                         <Avatar className={classes.avatar}
-                            alt={isMyProfile? userOnlineProfile.name:currentProfile.name}
-                            src={isMyProfile? userOnlineProfile.imageUrl :currentProfile.imageUrl}>
+                            alt={isMyProfile ? userOnlineProfile.name : currentProfile.name}
+                            src={isMyProfile ? userOnlineProfile.imageUrl : currentProfile.imageUrl}>
                             {user?.result?.name.charAt(0).toUpperCase()}
                         </Avatar>
                         <div className={classes.profileInfo}>
                             <Typography variant="h5" className={classes.titleName}>
-                                {isMyProfile? userOnlineProfile.name : currentProfile.name}
+                                {isMyProfile ? userOnlineProfile.name : currentProfile.name}
                             </Typography>
                             <div className={classes.infoContent}>
                                 <Typography variant="body2" className={classes.postsCount}><span className={classes.highlightCount}>{countPosts}</span> posts</Typography>

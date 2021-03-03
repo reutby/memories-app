@@ -8,7 +8,6 @@ import moment from "moment";
 const Comment = ({ comment }) => {
 
     const classes = useStyles();
-    // const user = JSON.parse(localStorage.getItem('profile'));
     return (
         <Card className={classes.commentCard}>
             <div className={classes.profile}>
@@ -22,7 +21,7 @@ const Comment = ({ comment }) => {
                 >
                     {comment.name + ':'}
                 </Typography>
-                <Typography variant="body2" className= {classes.time}>{moment(comment.createAt).fromNow()}</Typography>
+                <Typography variant="body2" className={classes.time}>{moment(comment.createAt).fromNow()}</Typography>
 
             </div>
             <Typography className={classes.comment} variant="body2">{comment.message}</Typography>

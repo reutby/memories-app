@@ -8,23 +8,27 @@ export default makeStyles((theme) => ({
     },
   },
   paper: {
-    position:'relative',
+    position: 'relative',
     padding: theme.spacing(2),
-    borderRadius:'15px'
+    borderRadius: '15px',
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    position:'relative',
+    position: 'relative',
+
   },
   fileInput: {
     width: '97%',
     margin: '10px 0 ',
 
+
+
   },
-  message:{
-    marginBottom:'8rem !important',
+  message: {
+    marginBottom: '8rem !important',
+    color: 'inherit',
   },
 
   buttonSubmit: {

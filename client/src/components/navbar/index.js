@@ -16,7 +16,7 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 const Navbar = () => {
 
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const user = useSelector(state=>state.auth.authData);
     const totalNotifications = useSelector((state) => state.notifications.filter((notification) => notification.receiverId === user?.result?.googleId || notification.receiverId === user?.result?._id).length);
     const [newNotificationsCount, setNewNotificationsCount] = useState(totalNotifications);
     const classes = useStyles();
@@ -26,7 +26,6 @@ const Navbar = () => {
     const handleLogout = () => {
         dispatch(logout());
         history.push('/auth');
-        setUser(null);
     }
     useEffect(() => {
         dispatch(getNotifications());
@@ -61,13 +60,12 @@ const Navbar = () => {
             if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
         }
 
-        setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography component={Link} to='/' className={classes.heading} align="center"> Inst-Moment</Typography>
+                <Typography component={Link} to={user? '/' : '/auth'} className={classes.heading} align="center"> Inst-Moment</Typography>
                 <img src={memories} className={classes.image} alt="memories" height="60" />
             </div>
             <Toolbar className={classes.toolbar}>

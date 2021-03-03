@@ -9,7 +9,8 @@ import useStyles from "./styles/form";
 
 import { createPost, updatePost } from "../../store/actions/posts";
 const Form = ({ currentId, setCurrentId }) => {
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const user = useSelector((state)=>state.auth.authData);
+    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
     const dispatch = useDispatch();
     const classes = useStyles();
     const [uploadFile, setUploadFile] = useState(null);
@@ -19,7 +20,6 @@ const Form = ({ currentId, setCurrentId }) => {
         tags: [],
         imageUrl: ''
     });
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
 
     useEffect(() => {
         if (post) {
@@ -94,6 +94,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     label="Title"
                     fullWidth
                     value={postData.title}
+                    className={classes.title}
                     onChange={(e) => {
                         setPostData({
                             ...postData,
