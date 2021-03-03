@@ -8,7 +8,7 @@ import * as ROUTES from "../constants/routes";
             {children}
         </Route>
     }
-    return <Redirect to= {{path: ROUTES.LOGIN_PAGE}}/>
+    return <Redirect to= {{pathname: ROUTES.LOGIN_PAGE}}/>
 
   }
 

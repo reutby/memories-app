@@ -33,8 +33,7 @@ const Auth = () => {
     const [formData, setFormData] = useState(initialState);
 
     useEffect(() => {
-        console.log(error);
-        return ()=>dispatch(clearError());
+          
     }, [error]);
 
     const handleSubmit = async (e) => {

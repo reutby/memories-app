@@ -20,7 +20,8 @@ const App = () => {
                     <ProtectedRoute user={user} path={ROUTES.HOME_PAGE} exact>
                         <Home/>
                     </ProtectedRoute>
-                    <Route path='/auth' component={Auth} />
+
+                    <Route path={ROUTES.LOGIN_PAGE} component={Auth} />
                     
                     <ProtectedRoute user={user} path={ROUTES.NOTIFICATIONS_PAGE}>
                         <Notifications/>
