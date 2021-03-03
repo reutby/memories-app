@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actiontypes";
 
 
-const authReducer = (auth = { authData: null }, action) => {
+const authReducer = (auth = { authData: JSON.parse(localStorage.getItem('profile')) }, action) => {
     switch (action.type) {
         case actionTypes.AUTH_SUCCESS:
         case actionTypes.SIGNIN:
