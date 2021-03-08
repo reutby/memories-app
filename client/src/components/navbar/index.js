@@ -81,7 +81,7 @@ const Navbar = () => {
                         </div>
                         <BootstrapTooltip title="Profile">
                             <Button component ={Link} to = {`/${user.result?._id || user.result?.googleId}`} 
-                            onClick={()=>{}}>
+                           >
                                 <Avatar className={classes.purple}
                                     alt={user.result.name}
                                     src={user.result.imageUrl}>
