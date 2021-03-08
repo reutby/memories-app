@@ -5,6 +5,9 @@ const notificationSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    postId:{
+        type:String,
+    },
     isPost:Boolean,
     userId: String,
     userName: String,

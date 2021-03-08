@@ -5,6 +5,6 @@ export default makeStyles({
         // maxWidth:'100%',
         position:'relative',
         margin: '.5rem 1rem',
-        boxShadow:'0rem 1rem 3rem rgba(0,0,0,.8)',
+       
     },
 });

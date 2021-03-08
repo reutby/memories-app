@@ -3,10 +3,11 @@ import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme)=>({
     commentCard:{  
-        border:'1px solid #fff',
-        backgroundColor:'#000',
-        borderRadius:'10px',
+
+        backgroundColor:'#252525',
         position:'relative',
+        marginBottom:'1rem',
+        boxShadow:'1rem 1rem 3rem rgba(0,0,0,.8)',
     },
     profile:{
         display:'flex',

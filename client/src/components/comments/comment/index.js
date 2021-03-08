@@ -28,7 +28,7 @@ const Comment = ({ comment }) => {
 
 
             <CardActions>
-                <ButtonsActions iconSize='small' isPost={false} cardComponent={comment} />
+                <ButtonsActions iconSize='small' postId={comment.postId} isPost={false} cardComponent={comment} />
             </CardActions>
         </Card>
     );
