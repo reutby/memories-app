@@ -14,9 +14,9 @@ export const createProfile = (req, res) => {
     const profile = req.body;
     Profile.findOne({ userId: req.userId }).
         then(result => {
-            console.log(result);
+            
             if (result) {
-                return res.status(200).json({ message: 'Profile already exist' });
+                return res.status(400).json({ message: 'Profile already exist' });
             }
             const newProfile = new Profile({ ...profile, userId: req.userId });
             newProfile.save()
@@ -78,7 +78,7 @@ export const addFollowing = (req, res) => {
             }
             Profile.updateOne({ userId: userId }, { followings: result.followings }).lean()
                 .then(updateProfile => {
-                    console.log(result);
+                    
                     return res.status(200).json({ _id: result._id, followings: result.followings})
                 })
                 .catch(err => res.status(409).json({ message: err.message }));

@@ -91,11 +91,7 @@ const Navbar = () => {
                             </Button>
 
                         </BootstrapTooltip>
-                        <Typography className={classes.userName}
-                            variant="h6"
-                        >
-                            {user.result.name}
-                        </Typography>
+                       
 
                         <Button variant="contained" className={classes.logout}
                             color="secondary"

@@ -18,6 +18,7 @@ const SearchBar = ({ user }) => {
         if (userIndex !== -1) {
             setUserProfile(profiles[userIndex]);
         }
+       
     }, [profiles, userId]);
 
     const handleChange = (e) => {

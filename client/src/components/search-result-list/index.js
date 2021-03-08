@@ -4,7 +4,7 @@ import SearchResultItem from "./search-result-item";
 import useStyles from "./styles/search-result-list";
 const SearchResultList = ({userProfile, filteredProfiles})=> {
     const classes = useStyles();
-
+    
     return (
         
             <Paper className= {classes.listContainer}>
