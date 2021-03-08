@@ -21,11 +21,11 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchAllProfiles());
-    }, [dispatch])
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(getAllComments());
-    }, [dispatch, currentId])
+    }, [dispatch, currentId]);
 
     return (
 

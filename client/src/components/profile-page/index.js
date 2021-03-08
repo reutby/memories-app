@@ -4,17 +4,18 @@ import { Posts, Profile } from "../";
 import useStyle from "./styles/profile-page";
 import {fetchAllProfiles} from "../../store/actions/profiles";
 import {getPosts} from "../../store/actions/posts";
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import {useLocation} from 'react-router-dom';
 const ProfilePage = () => {
     const classes = useStyle();
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const user = useSelector((state)=>state.auth.authData);
     const location = useLocation().pathname;
     useEffect(() => {
         dispatch(fetchAllProfiles());
         dispatch(getPosts());
-    }, [dispatch,location, user])
+        
+    }, [dispatch,location])
 
     return (
             <Grow in>
@@ -23,7 +24,7 @@ const ProfilePage = () => {
                     <div className={classes.ProfileContainer}>
                         <Profile user={user} />
                     </div>
-                    <Posts  userId={user?.result?.googleId || user?.result?.id}/>
+                        <Posts  userId={user?.result?.googleId || user?.result?.id}/>
 
                 </Container>
 

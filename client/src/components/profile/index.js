@@ -41,7 +41,7 @@ const Profile = ({ user }) => {
                 }
             }
         }
-
+    
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profiles]);
 

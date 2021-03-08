@@ -13,15 +13,16 @@ export const getPosts = () => async (dispatch) => {
     }
 }
 
-export const getUserPosts = (id) => async (dispatch) => {
-    try {
-        const { data } = await api.fetchUserPosts(id);
-        dispatch({ type: actionTypes.FETCH_USER_POSTS, payload: data });
+//for now i;m not using this action
+// export const getUserPosts = (id) => async (dispatch) => {
+//     try {
+//         const { data } = await api.fetchUserPosts(id);
+//         dispatch({ type: actionTypes.FETCH_USER_POSTS, payload: data });
 
-    } catch (err) {
-        console.log(err);
-    }
-}
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
 export const createPost = (post) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);

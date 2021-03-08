@@ -68,16 +68,16 @@ export const likePost = (req, res) => {
 
 }
 
-export const getUserPosts = (req,res)=>{
-    const { id } = req.params;
-    PostMessage.find({creator:id}).lean()
-    .then(result=>res.status(200).json(result))
-    .catch(error=>res.status(404).json({ message: error.message }));
+// export const getUserPosts = (req,res)=>{
+//     const { id } = req.params;
+//     PostMessage.find({creator:id}).lean()
+//     .then(result=>res.status(200).json(result))
+//     .catch(error=>res.status(404).json({ message: error.message }));
 
-}
+// }
 export const getPostById = (req,res)=>{
     const {id} = req.params;
-    PostMessage.findById(_id).lean()
+    PostMessage.findById(id).lean()
     .then(result=>res.status(200).json(result))
     .catch(error=>res.status(404).json({ message: error.message }));
 }
