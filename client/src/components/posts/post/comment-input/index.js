@@ -40,7 +40,12 @@ const CommentInput = ({ postCreator, postId }) => {
             dispatch(createComment(postId, comment));
             setMessage('');
             dispatch(createNotification({
-                notificationType: 'comment', userName: user?.result?.name, receiverId: postCreator.id, receiverName: postCreator.name,isPost:true
+                notificationType: 'comment', 
+                userName: user?.result?.name, 
+                receiverId: postCreator.id, 
+                receiverName: postCreator.name,
+                isPost:true,
+                postId:postId
             }))
         }
     }

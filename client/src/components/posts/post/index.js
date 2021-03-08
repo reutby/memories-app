@@ -78,7 +78,7 @@ const Post = ({ post, setCurrentId, isHome }) => {
                         </Button>
                     </BootstrapTooltip>}
             {isHome && <><CardActions className={classes.cardActions}>
-                <ButtonsActions cardComponent={post} commentsCount={countComments} handleClick={handleCommentsClick} iconSize="default" isPost />
+                <ButtonsActions cardComponent={post} postId={post._id} commentsCount={countComments} handleClick={handleCommentsClick} iconSize="default" isPost />
 
             </CardActions>
 

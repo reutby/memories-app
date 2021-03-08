@@ -6,7 +6,6 @@ const notificationsReducer = (notifications = [], action) => {
         case actionTypes.FETCH_NOTIFICATIONS:
             return action.payload;
         case actionTypes.CREATE_NOTIFICATION:{
-            console.log(action.payload);
             return [...notifications, action.payload];
         }
         case actionTypes.DELETE_NOTIFICATION:

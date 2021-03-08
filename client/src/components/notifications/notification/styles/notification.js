@@ -1,10 +1,14 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-
+    notification:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+    },
     link:{
         // textDecoration:'none',
-        float:'right',
+        marginRight:'1rem',
         fontWeight:'bold',
         transition:'all .3s',
         '&:hover':{
@@ -14,16 +18,19 @@ export default makeStyles((theme) => ({
     }
     ,
     message:{
-        float:'left',
+        marginRight:'auto',
 
     },
-    deleteIcons:{
-        float:'right',
-        padding:'0',
-    },
-
+   
     moment:{
-        float:'right',
+
         paddingRight:'1rem',
+        
     },
+
+    // [theme.breakpoints.down('sm')] :{
+    //     notification:{
+    //         flexDirection:'column',
+    //     }
+    // }
 }));
