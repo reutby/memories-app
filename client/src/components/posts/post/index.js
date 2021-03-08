@@ -27,7 +27,7 @@ const Post = ({ post, setCurrentId, isHome }) => {
 
     return (
 
-        <Card className={classes.card}>
+        <Card className={isHome? classes.card : ([classes.profileCard,classes.card].join(" "))}>
             <CardMedia className={classes.media}
                 image={post.imageUrl}
                 title={post.title}
@@ -73,7 +73,7 @@ const Post = ({ post, setCurrentId, isHome }) => {
             </div>
             {!isHome && 
                 <BootstrapTooltip title="go to post">
-                        <Button size="small" className={classes.gotoPost} onClick={() =>{  }}>
+                        <Button size="small" component={Link} to={`/posts/${post._id}`} className={classes.gotoPost} onClick={() =>{  }}>
                             <ArrowForwardIosIcon style={{position:'relative', left:'1rem'}} />
                         </Button>
                     </BootstrapTooltip>}

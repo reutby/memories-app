@@ -27,14 +27,14 @@ const App = () => {
                         <Notifications/>
                     </ProtectedRoute>
                     
+                    <ProtectedRoute user={user} exact path={ROUTES.SINGLE_POST_PAGE}>
+                        <PostPage/>
+                    </ProtectedRoute>
+                   
                     <ProtectedRoute user={user} path={ROUTES.PROFILE_PAGE}>
                         <ProfilePage/>
                     </ProtectedRoute>
                     
-                    <ProtectedRoute user={user} path={ROUTES.SINGLE_POST_PAGE}>
-                        <PostPage/>
-                    </ProtectedRoute>
-                   
                    
                 </Switch>
 

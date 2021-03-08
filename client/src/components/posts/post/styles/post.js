@@ -40,6 +40,13 @@ export default makeStyles((theme) => ({
     color: 'white',
     paddingBottom: '0',
   },
+
+  profileCard:{
+    transition:'transform .5s',
+    '&:hover':{
+      transform:'scale(1.1)',
+    }
+  },
   overlay: {
     position: 'absolute',
     top: '0',
@@ -94,7 +101,7 @@ export default makeStyles((theme) => ({
     bottom: '1rem',
     borderRadius:'5px 0 0 5px',
     right: '0',
-    transition:'all .5s',
+    transition:'backgroundColor color .5s',
     '&:hover':{
       backgroundColor:'rgba(255,255,255,.6)',
       color:'black'
