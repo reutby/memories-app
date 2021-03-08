@@ -10,8 +10,9 @@ export default makeStyles((theme) => ({
         margin:'1rem',
         padding:'1rem',
         transition:'all .5s',
+
         paddingRight:'0',
-        backgroundColor:'#fff',
+        backgroundColor:'#252525',
         '&::after':{
             content: '""',
             display: 'table',

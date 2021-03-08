@@ -17,11 +17,11 @@ const Notification = ({ notification }) => {
                 `Likes your ${notification.isPost ? 'Post' : 'Comment'}`
                 : `Comment on your ${notification.isPost ? 'Post' : 'Comment'}`}</Typography>
             
-            <Typography className={classes.moment} variant="body2">{moment(notification.createAt).fromNow()}</Typography>
-            <Typography component={Link} color="primary" to={`/posts/${notification.postId}`} variant='body1' className={classes.link} align="center"> Go to Post</Typography>
             <Button size="small" className={classes.deleteIcons} onClick={() => { dispatch(deleteNotification(notification._id)) }}>
                 <DeleteIcon fontSize='default' />
             </Button>
+            <Typography className={classes.moment} variant="body2">{moment(notification.createAt).fromNow()}</Typography>
+            <Typography component={Link} color="primary" to={`/posts/${notification.postId}`} variant='body1' className={classes.link} align="center"> Go to Post</Typography>
 
 
         </div>

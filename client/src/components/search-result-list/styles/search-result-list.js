@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
 
     listContainer:{
         position:'absolute',
+        backgroundColor:'#252525',
         width:"26rem",
         zIndex:'3000',
         marginTop:'-.3rem',

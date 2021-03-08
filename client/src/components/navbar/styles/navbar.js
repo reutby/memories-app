@@ -4,11 +4,12 @@ import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
-    borderRadius: 15,
+    borderRadius: 5,
     margin: '30px 0',
     display: 'flex !important',
     flexDirection: 'row !important',
-    
+    backgroundColor:'#252525',
+    boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
     padding: '10px 50px',
     position: 'relative',
 
@@ -57,9 +58,12 @@ export default makeStyles((theme) => ({
   },
   notificationButton: {
     backgroundColor: 'transparent',
+    '&:hover':{
+      backgroundColor:'rgba(0,0,0,.6)',
+    }
   },
   notificationIcon: {
-    
+    color:'#bbbbbb',
    
   },
   notificationsDiv: {

@@ -7,11 +7,14 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
+    backgroundColor:'#252525',
   },
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
+      
     },
+   
   },
   avatar: {
     margin: theme.spacing(1),

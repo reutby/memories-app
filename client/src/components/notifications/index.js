@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Typography, Grid, Grow } from "@material-ui/core";
+import {Grid, Grow } from "@material-ui/core";
 import useStyles from "./styles/notifications";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "./notification";
@@ -24,8 +24,7 @@ const Notifications = () => {
     }, [dispatch]);
     return (
         <>
-            <Typography variant="h2">Count :   {notifications.length}</Typography>
-            <Grow in>
+             <Grow in>
                 <Grid className={classes.notificationsContainer}>
                     {notifications.map((notification) => (
                         <Grid key={notification._id} className={classes.notification} item >

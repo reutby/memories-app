@@ -23,7 +23,7 @@ const ChatApp = () => {
   },[user]);
   return (
     <>
-      <IconButton disabled={!user} className={classes.appButton} onClick={(e) => { setIsAppExit(false) }}>
+      <IconButton disabled={!user || user?.result?.googleId} className={classes.appButton} onClick={(e) => { setIsAppExit(false) }}>
         <ChatIcon fontSize="default" />
       </IconButton>
       {!isAppExit && user &&

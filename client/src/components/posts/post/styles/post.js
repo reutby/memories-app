@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
   },
   card: {
     border: '2px rgb(255,255,255)',
-    boxShadow: '0 2rem 3rem #252525',
+    boxShadow: '0 1rem 2rem rgba(0,0,0,.6)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',

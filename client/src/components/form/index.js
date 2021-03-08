@@ -9,7 +9,7 @@ import useStyles from "./styles/form";
 
 import { createPost, updatePost } from "../../store/actions/posts";
 const Form = ({ currentId, setCurrentId }) => {
-    const user = useSelector((state)=>state.auth.authData);
+    const user = useSelector((state) => state.auth.authData);
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -41,21 +41,21 @@ const Form = ({ currentId, setCurrentId }) => {
             title: '',
             message: '',
             tags: [],
-            imageUrl:''
+            imageUrl: ''
         })
     }
     const handleUpload = e => {
         const files = e.target.files;
-       
+
         setUploadFile(files[0]);
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const tagsUpdate = postData.tags.map((tag) => tag.displayValue);
-       
+
         const url = await uploadImage(uploadFile);
         if (currentId) {
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, tags: tagsUpdate, imageUrl:url }));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, tags: tagsUpdate, imageUrl: url }));
         }
         else {
             dispatch(createPost({
@@ -95,6 +95,11 @@ const Form = ({ currentId, setCurrentId }) => {
                     fullWidth
                     value={postData.title}
                     className={classes.title}
+                    InputLabelProps={{
+                        classes: {
+                            root: classes.label,
+                        }
+                    }}
                     onChange={(e) => {
                         setPostData({
                             ...postData,
@@ -110,6 +115,11 @@ const Form = ({ currentId, setCurrentId }) => {
                     fullWidth
                     className={classes.message}
                     value={postData.message}
+                    InputLabelProps={{
+                        classes: {
+                            root: classes.label,
+                        }
+                    }}
                     onChange={(e) => {
                         setPostData({
                             ...postData,
@@ -147,16 +157,17 @@ const Form = ({ currentId, setCurrentId }) => {
                 tags={postData.tags}
                 wrapperStyle={`
                         
-                        border:solid 1px #cdd0cb;
-                        border-radius:5px;
+                        borderRadius:5px;
+                        
                         width:77%;
                         top:45%;
+                        
                         overflow-y:scroll;
                         overflow-x:hidden;
                         max-height:4rem;
                         left:1.4rem;
                         transform:none;
-                        box-shadow:none;
+                        
                         background-color:transparent;
                         margin-bottom:1rem;
                         margin-top:.6rem;
@@ -164,12 +175,14 @@ const Form = ({ currentId, setCurrentId }) => {
                         `}
                 inputStyle={
                     `background-color:transparent;
+                    color:#fff;
+                    boxShadow:0 2rem 2rem rgba(0,0,0,.8);
                         `
                 }
                 tagStyle={`
                     background-color:#3700b3;
                     
-                    box-shadow:0 .5rem 1rem #cdd0cb;
+                    box-shadow:0 .5rem 1rem rgba(0,0,0,.8);
                     border-radius:2rem;
                     padding:.3rem 1rem;
                     border:solid 1px rgba(0,0,0,.8); 

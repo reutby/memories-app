@@ -14,6 +14,7 @@ export default makeStyles((theme) => ({
     },
     profileName:{
         textTransform:'capitalize',
+        color:'#bbbbbb',
     },
     
 }));

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Typography, Avatar, Button, Paper, CircularProgress } from "@material-ui/core"
 import useStyle from "./styles/profile";
 import { useSelector, useDispatch } from "react-redux";
-
+import { SearchResultList } from "../";
 import { useLocation } from "react-router-dom";
 import { addFollower, addFollowing } from "../../store/actions/profiles";
 
@@ -14,6 +14,8 @@ const Profile = ({ user }) => {
     const countPosts = useSelector(state => state.posts.filter((post) => post.creator === location.substr(1, location.length - 1))).length;
     const [currentProfile, setCurrentProfile] = useState(null);
     const [userOnlineProfile, setUserOnlineProfile] = useState(null);
+    const [followersListProfile, setFollowersListProfile] = useState(null);
+    const [followingsListProfile, setFollowingsListProfile] = useState(null);
 
     const dispatch = useDispatch();
 
@@ -21,6 +23,31 @@ const Profile = ({ user }) => {
         location.substr(1, location.length - 1) === user.result?.googleId;
 
     const classes = useStyle();
+    useEffect(() => {
+        if(currentProfile && profiles){
+            const filteredProfiles = [];
+            currentProfile.followers.map(followerId => {
+                const index = profiles.findIndex((profile) => profile.userId === followerId);
+                filteredProfiles.push(profiles[index]);
+                return followerId;
+            })
+            setFollowingsListProfile(filteredProfiles);
+
+        }
+    },[profiles,currentProfile]);
+
+    useEffect(() => {
+        if(currentProfile && profiles){
+            const filteredProfiles = [];
+            currentProfile.followings.map(followingId => {
+                const index = profiles.findIndex((profile) => profile.userId === followingId);
+                filteredProfiles.push(profiles[index]);
+                return followingId;
+            })
+            setFollowersListProfile(filteredProfiles);
+
+        }
+    },[profiles,currentProfile]);
 
     useEffect(() => {
 
@@ -41,7 +68,7 @@ const Profile = ({ user }) => {
                 }
             }
         }
-    
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profiles]);
 
@@ -73,8 +100,14 @@ const Profile = ({ user }) => {
                             </Typography>
                             <div className={classes.infoContent}>
                                 <Typography variant="body2" className={classes.postsCount}><span className={classes.highlightCount}>{countPosts}</span> posts</Typography>
-                                <Typography variant="body2" className={classes.postsCount}><span className={classes.highlightCount}>{isMyProfile ? userOnlineProfile.followers.length : currentProfile.followers.length}</span> followers</Typography>
+
+                                <Typography variant="body2" className={classes.followersCount}><span className={classes.highlightCount}>{isMyProfile ? userOnlineProfile.followers.length : currentProfile.followers.length}</span> followers</Typography>
+                                {/* {followersListProfile && <Paper className={classes.followersList}>
+                                    <SearchResultList userProfile={currentProfile} filteredProfiles={followersListProfile} />
+                                </Paper>} */}
                                 <Typography variant="body2" className={classes.postsCount}><span className={classes.highlightCount}>{isMyProfile ? userOnlineProfile.followings.length : currentProfile.followings.length}</span> following</Typography>
+                                {/* <Paper className={classes.followingList}></Paper> */}
+
                             </div>
                             {!isMyProfile &&
                                 <Button onClick={followerHandler} className={classes.followButton} variant="contained" color="primary" >{userOnlineProfile.followings.find((followingId) => followingId === currentProfile.userId) ? 'Un-Follow' : 'Follow'}</Button>}
