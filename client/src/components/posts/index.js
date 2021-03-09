@@ -18,10 +18,13 @@ const Posts = ({ setCurrentId, userId }) => {
 
         if (isHomePage) {
             const indexUser = profiles.findIndex((profile) => profile.userId === userId);
+ 
             if (indexUser !== -1) {
                 const { followings } = profiles[indexUser];
-                setFriendsPosts(posts.filter((post) => followings.find((following) => post.creator === following || post.creator === userId)));
-
+                setFriendsPosts(posts.filter((post) => followings.find((following) => 
+                    post.creator === following) || post.creator === userId
+                    ));
+              
             }
         }
     }, [posts, profiles])

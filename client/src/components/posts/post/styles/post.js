@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: '#252525',
+    backgroundColor: '#383838',
     height: '100%',
     position: 'relative',
     color: 'white',
