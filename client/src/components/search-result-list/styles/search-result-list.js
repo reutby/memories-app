@@ -4,8 +4,9 @@ export default makeStyles((theme) => ({
 
     listContainer:{
         position:'absolute',
-        backgroundColor:'#252525',
-        width:"26rem",
+        backgroundColor:'#383838',
+        boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
+        width:'26rem',
         zIndex:'3000',
         marginTop:'-.3rem',
         paddingTop:'.5rem',
@@ -13,6 +14,8 @@ export default makeStyles((theme) => ({
         overflowY:'scroll',
         left:'0',
         top:'3rem',
+    },
+    [theme.breakpoints.down('sm')]:{
+        width:'auto',
     }
-    
 }));

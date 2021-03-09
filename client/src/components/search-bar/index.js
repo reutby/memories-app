@@ -37,9 +37,9 @@ const SearchBar = ({ user }) => {
 
         <form className={classes.form}>
             <input placeholder="Search friends..." value={searchInput} type="text" onChange={handleChange} className={classes.searchInput} id="outlined-basic" variant="outlined" />
-            <SearchIcon className={classes.searchIcon} fontSize="default" />
+            <SearchIcon className={classes.searchIcon}  fontSize="default" />
             {filteredProfiles.length && <div className={classes.searchResultList}>
-                <SearchResultList filteredProfiles={filteredProfiles} userProfile={userProfile} />
+                <SearchResultList isMyProfile= {true} filteredProfiles={filteredProfiles} userProfile={userProfile} />
 
             </div>}
 

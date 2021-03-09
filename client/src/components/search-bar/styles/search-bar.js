@@ -20,14 +20,14 @@ export default makeStyles((theme) => ({
         flex: '0 0 20%',
         
         fontFamily:'inherit',
-        backgroundColor: '#252525',
+        backgroundColor: '#383838',
         color:'#fff',
         padding: '.5rem 2rem .5rem .8rem',
         transition:'all 1s',
         fontSize:'1.2rem',
         '&:focus': {
             outline: 'none',
-            border: ' 1px solid #252525',
+            border: ' 1px solid #383838',
             flex:'0 0 35%',
             boxShadow:'0 1rem 1rem rgba(0,0,0,.6)',
 
