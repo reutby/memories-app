@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Container, Typography, Paper } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux"
+import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 import { TagInput } from 'reactjs-tag-input';
-import { uploadImage } from '../../api/upload-image'
+import { uploadImage } from '../../api/upload-image';
 
 import useStyles from "./styles/form";
 
@@ -13,7 +13,7 @@ const Form = ({ currentId, setCurrentId }) => {
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
     const dispatch = useDispatch();
     const classes = useStyles();
-    const [uploadFile, setUploadFile] = useState(null);
+    const [uploadFile, setUploadFile] = useState("");
     const [postData, setPostData] = useState({
         title: '',
         message: '',
@@ -29,6 +29,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 
     const handleTagsChange = (tags) => {
+        console.log(tags);
         setPostData({
             ...postData,
             tags: tags
@@ -43,6 +44,8 @@ const Form = ({ currentId, setCurrentId }) => {
             tags: [],
             imageUrl: ''
         })
+        setUploadFile('');
+       
     }
     const handleUpload = e => {
         const files = e.target.files;
@@ -65,7 +68,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
         }
         handelClear();
-        setUploadFile(null);
+        setUploadFile("");
 
     }
     if (!user?.result?.name) {
@@ -95,11 +98,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     fullWidth
                     value={postData.title}
                     className={classes.title}
-                    InputLabelProps={{
-                        classes: {
-                            root: classes.label,
-                        }
-                    }}
+
                     onChange={(e) => {
                         setPostData({
                             ...postData,
@@ -115,11 +114,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     fullWidth
                     className={classes.message}
                     value={postData.message}
-                    InputLabelProps={{
-                        classes: {
-                            root: classes.label,
-                        }
-                    }}
+
                     onChange={(e) => {
                         setPostData({
                             ...postData,
@@ -136,6 +131,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     required
                     id="upload-button"
                     onChange={handleUpload}
+                    
                 />
 
                 <Button className={classes.buttonSubmit}
@@ -156,33 +152,32 @@ const Form = ({ currentId, setCurrentId }) => {
                 onTagsChanged={handleTagsChange}
                 tags={postData.tags}
                 wrapperStyle={`
-                        
-                        borderRadius:5px;
+                        color:'black';
+                        background-color:'white';
+                        border-radius:5px;
                         
                         width:77%;
                         top:45%;
-                        
+                        min-height:6rem;
                         overflow-y:scroll;
                         overflow-x:hidden;
                         max-height:4rem;
                         left:1.4rem;
                         transform:none;
                         
-                        background-color:transparent;
+                        boxShadow:0 2rem 2rem rgba(0,0,0,.8);
+                        
                         margin-bottom:1rem;
                         margin-top:.6rem;
                         padding:1rem;
                         `}
                 inputStyle={
-                    `background-color:transparent;
-                    color:#fff;
-                    boxShadow:0 2rem 2rem rgba(0,0,0,.8);
-                        `
+                    `background-color:'white';
+                    color:'black';
+                    `
                 }
                 tagStyle={`
                     background-color:#3700b3;
-                    
-                    box-shadow:0 .5rem 1rem rgba(0,0,0,.8);
                     border-radius:2rem;
                     padding:.3rem 1rem;
                     border:solid 1px rgba(0,0,0,.8); 

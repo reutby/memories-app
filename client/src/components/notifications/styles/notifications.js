@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
         transition:'all .5s',
 
         paddingRight:'0',
-        backgroundColor:'#252525',
+        backgroundColor:'#383838',
         '&::after':{
             content: '""',
             display: 'table',

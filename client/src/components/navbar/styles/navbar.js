@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     margin: '30px 0',
     display: 'flex !important',
     flexDirection: 'row !important',
-    backgroundColor:'#252525',
+    backgroundColor:'#383838',
     boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
     padding: '10px 50px',
     position: 'relative',

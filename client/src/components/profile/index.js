@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Typography, Avatar, Button, Paper, CircularProgress } from "@material-ui/core"
 import useStyle from "./styles/profile";
 import { useSelector, useDispatch } from "react-redux";
-import { SearchResultList } from "../";
+import {ProfileInfo} from "../";
 import { useLocation } from "react-router-dom";
 import { addFollower, addFollowing } from "../../store/actions/profiles";
 
@@ -24,6 +24,7 @@ const Profile = ({ user }) => {
 
     const classes = useStyle();
     useEffect(() => {
+        
         if(currentProfile && profiles){
             const filteredProfiles = [];
             currentProfile.followers.map(followerId => {
@@ -37,6 +38,7 @@ const Profile = ({ user }) => {
     },[profiles,currentProfile]);
 
     useEffect(() => {
+       
         if(currentProfile && profiles){
             const filteredProfiles = [];
             currentProfile.followings.map(followingId => {
@@ -57,6 +59,7 @@ const Profile = ({ user }) => {
             if (isMyProfile) {
                 //set only the user profile
                 setUserOnlineProfile(profiles[profileIndex]);
+                setCurrentProfile(profiles[profileIndex]);
             }
             //should be always valid
             else {
@@ -98,17 +101,8 @@ const Profile = ({ user }) => {
                             <Typography variant="h5" className={classes.titleName}>
                                 {isMyProfile ? userOnlineProfile.name : currentProfile.name}
                             </Typography>
-                            <div className={classes.infoContent}>
-                                <Typography variant="body2" className={classes.postsCount}><span className={classes.highlightCount}>{countPosts}</span> posts</Typography>
-
-                                <Typography variant="body2" className={classes.followersCount}><span className={classes.highlightCount}>{isMyProfile ? userOnlineProfile.followers.length : currentProfile.followers.length}</span> followers</Typography>
-                                {/* {followersListProfile && <Paper className={classes.followersList}>
-                                    <SearchResultList userProfile={currentProfile} filteredProfiles={followersListProfile} />
-                                </Paper>} */}
-                                <Typography variant="body2" className={classes.postsCount}><span className={classes.highlightCount}>{isMyProfile ? userOnlineProfile.followings.length : currentProfile.followings.length}</span> following</Typography>
-                                {/* <Paper className={classes.followingList}></Paper> */}
-
-                            </div>
+                            {followersListProfile && followingsListProfile && 
+                            <ProfileInfo currentProfile={currentProfile} followers={followersListProfile} followings={followingsListProfile} postsCount = {countPosts} isMyProfile={isMyProfile}/>}
                             {!isMyProfile &&
                                 <Button onClick={followerHandler} className={classes.followButton} variant="contained" color="primary" >{userOnlineProfile.followings.find((followingId) => followingId === currentProfile.userId) ? 'Un-Follow' : 'Follow'}</Button>}
                         </div>

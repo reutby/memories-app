@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(1),
       border:'none',
       borderRadius:'5px',
-      boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
+      // boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
     },
     '& .MuiInputBase-input':{
       color:'#bbbbbb',
@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
     }
   },
   paper: {
-    backgroundColor:'#252525',
+    backgroundColor:'#383838',
     boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
     position: 'relative',
     padding: theme.spacing(2),
@@ -39,15 +39,12 @@ export default makeStyles((theme) => ({
   },
   message: {
     marginBottom: '8rem !important',
-    color:'#bbbbbb !important',
     
   },
-  label:{
-    color:'#bbbbbb',
-    
-  },
+  
 
   buttonSubmit: {
     marginBottom: 10,
   },
+  
 }));

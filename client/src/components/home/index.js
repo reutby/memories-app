@@ -39,8 +39,9 @@ const Home = () => {
                 </Grid >
                 <Grid container className={classes.mainContainer} justify="space-between" alignItems="stretch" spacing={3}>
                     <Grid item className={classes.postsItem} xs={12} sm={8}>
-                        <Posts userId={user?.result?.googleId || user?.result?._id} setCurrentId={setCurrentId} />
-                    </Grid>
+                        {user &&<Posts userId={user?.result?.googleId || user?.result?._id} setCurrentId={setCurrentId} />
+                        }
+                        </Grid>
                     <Grid item xs={12} sm={4}>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
                     </Grid>

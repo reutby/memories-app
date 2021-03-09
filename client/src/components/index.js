@@ -11,3 +11,4 @@ export {default as PostPage } from "./post-page";
 export {default as Profile} from "./profile";
 export {default as SearchBar} from "./search-bar";
 export {default as SearchResultList} from "./search-result-list";
+export {default as ProfileInfo} from "./profile-info";
