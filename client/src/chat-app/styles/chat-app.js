@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
         right:'.5rem',
 
         '&:hover':{
-            color:'#313235',
+            color:'#313235',  
             backgroundColor:'white',
         }
         ,

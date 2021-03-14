@@ -17,8 +17,7 @@ export default makeStyles((theme) => ({
         backgroundColor: '#fff',
         display: 'flex',
     },
-    emojiButton: {
-        color: '#fff',
+    emojiButton: {  
         display:'flex',
     },
     postButton: {

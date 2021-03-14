@@ -44,7 +44,7 @@ const Post = ({ post, setCurrentId, isHome }) => {
                 <Typography variant="body2">{moment(post.createAt).fromNow()}</Typography>
             </div>}
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (<div className={classes.overlay2}>
-                {isHome && <Button style={{color: 'white' }}
+                {isHome && <Button
                     size="small"
                     onClick={() => { setCurrentId(post._id) }}>
                     <MoreHorizIcon fontSize="default" />

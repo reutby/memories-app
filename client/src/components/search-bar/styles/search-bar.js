@@ -20,8 +20,8 @@ export default makeStyles((theme) => ({
         flex: '0 0 20%',
         
         fontFamily:'inherit',
-        backgroundColor: '#383838',
-        color:'#fff',
+          
+          
         padding: '.5rem 2rem .5rem .8rem',
         transition:'all 1s',
         fontSize:'1.2rem',

@@ -34,10 +34,10 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: '#383838',
+      
     height: '100%',
     position: 'relative',
-    color: 'white',
+     
     paddingBottom: '0',
   },
 
@@ -52,15 +52,15 @@ export default makeStyles((theme) => ({
     top: '0',
     padding: '.7rem',
     left: '0',
-    color: 'white',
-    backgroundColor: 'rgba(0,0,0,.6)',
+    
+    backgroundColor: 'rgba(117, 116, 108,.6)',
     width: '100%',
   },
   overlay2: {
     position: 'absolute',
     top: '20px',
     right: '20px',
-    color: 'white',
+     
   },
   grid: {
     display: 'flex',
@@ -69,7 +69,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '20px',
-    color: 'white',
+     
   },
   tags: {
     fontWeight: 'bold',
@@ -77,7 +77,7 @@ export default makeStyles((theme) => ({
   },
   title: {
     padding: '0 16px',
-    color: 'white',
+     
   },
   creatorName: {
     textTransform: "capitalize",
@@ -94,7 +94,7 @@ export default makeStyles((theme) => ({
 
   },
   gotoPost: {
-    color: 'white',
+     
     backgroundColor: 'rgba(0,0,0,.8)',
     padding: 'auto 0',
     position: 'absolute',

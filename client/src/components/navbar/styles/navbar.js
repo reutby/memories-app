@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     margin: '30px 0',
     display: 'flex !important',
     flexDirection: 'row !important',
-    backgroundColor:'#383838',
+      
     boxShadow:'0 1rem 2rem rgba(0,0,0,.6)',
     padding: '10px 50px',
     position: 'relative',
@@ -56,16 +56,7 @@ export default makeStyles((theme) => ({
     backgroundColor: deepPurple[500],
     position: 'relative',
   },
-  notificationButton: {
-    backgroundColor: 'transparent',
-    '&:hover':{
-      backgroundColor:'rgba(0,0,0,.6)',
-    }
-  },
-  notificationIcon: {
-    color:'#bbbbbb',
-   
-  },
+  
   notificationsDiv: {
     position: 'relative',
     margin: '0',

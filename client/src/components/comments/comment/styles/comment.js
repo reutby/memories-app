@@ -4,7 +4,7 @@ import { deepPurple } from '@material-ui/core/colors';
 export default makeStyles((theme)=>({
     commentCard:{  
 
-        backgroundColor:'#383838',
+          
         position:'relative',
         marginBottom:'1rem',
         boxShadow:'1rem 1rem 3rem rgba(0,0,0,.8)',
@@ -28,13 +28,13 @@ export default makeStyles((theme)=>({
         display:'flex',
     },
     time:{
-        color:'#fff',
+          
         position:'absolute',
         top:'.5rem',
         right:'.5rem',
     },
     userName:{
-        color:'#fff',   
+             
         display:'flex',
         margin:'.5rem',
         width:'10rem',
@@ -52,7 +52,7 @@ export default makeStyles((theme)=>({
         paddingLeft:'1rem',
         margin:'0 1rem 1rem 3rem',
         overflowWrap: 'break-word',
-        color:'#fff',
+          
         // paddingLeft:'.5rem',
     },
     [theme.breakpoints.down('md')] : {

@@ -6,14 +6,14 @@ export default makeStyles((theme) => ({
         padding: theme.spacing(6),
         width: '40rem',
         boxShadow: '0 1rem 2rem rgba(0,0,0,.6)',
-        backgroundColor: '#383838',
+          
     },
     profileDiv: {
         display: 'flex',
         flex: '0 0 100%',
     },
     profileInfo: {
-        color:'#fff',
+          
         flexBasis: '50%',
         marginLeft: '3rem',
         display: 'flex',
@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
     },
     
     titleName: {
-        color:'#fff',
+          
         textTransform: 'capitalize',
         textDecoration: 'underline',
         marginBottom: '1rem',

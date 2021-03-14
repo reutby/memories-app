@@ -7,14 +7,14 @@ export default makeStyles((theme) => ({
         overflow: 'hidden',
         borderRadius: '6px',
         border: ' 2px solid white',
-        backgroundColor: '#313235',
+        backgroundColor:'#313235',   
         display: 'flex',        
     },
 
     messageInput: {
         height: '40px',
         width: '90%',
-        backgroundColor: '#313235',
+        backgroundColor:'#313235', 
         border: '1px solid #313235',
         color: 'white',
         padding: '0px 18px',
@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
     imageButtonContainer: {
         
         position:'relative',
-        backgroundColor: '#313235',
+        backgroundColor:'#313235',   
         height: '100%',
       
     },
@@ -48,7 +48,7 @@ export default makeStyles((theme) => ({
         height: '42px',
         color: 'white',
         border: 'none',
-        backgroundColor: '#313235',
+        backgroundColor:'#313235', 
         //padding: ' 0px 18px',
         position: 'relative',
         cursor: ' pointer',
